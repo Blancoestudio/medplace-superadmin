@@ -1,0 +1,26 @@
+.box {
+  &.top-group {
+    height: 20vh;
+    h5 {
+      color: #4F4F4F;
+    }
+  }
+  &.active {
+    background-color: #142748;
+    color: #ffffff;
+    h5 {
+      color: #ffffff;
+    }
+  }
+}
+
+.tab-list {
+  .tab {
+    width: 100%;
+    height: 48px;
+    border-radius: 5px;
+    padding: 0 1em;
+    font-size: 1.2em;
+    margin-bottom: .5em;
+  }
+}
