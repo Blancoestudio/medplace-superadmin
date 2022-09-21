@@ -8,8 +8,8 @@ import { LoaderComponent } from './loader/loader.component';
 import { RouterModule } from '@angular/router';
 import { CheckboxCmpComponent } from './checkbox-cmp/checkbox-cmp.component';
 import { ModalCmpComponent } from './modal-cmp/modal-cmp.component';
-
-
+import { PinCodeComponent } from './pin-code/pin-code.component';
+import { ConfirmActionModalComponent } from './confirm-action-modal/confirm-action-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,9 @@ import { ModalCmpComponent } from './modal-cmp/modal-cmp.component';
     PageHeaderComponent,
     LoaderComponent,
     CheckboxCmpComponent,
-    ModalCmpComponent
+    ModalCmpComponent,
+    PinCodeComponent,
+    ConfirmActionModalComponent,
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,9 @@ import { ModalCmpComponent } from './modal-cmp/modal-cmp.component';
     PageHeaderComponent,
     LoaderComponent,
     CheckboxCmpComponent,
-    ModalCmpComponent
+    ModalCmpComponent,
+    PinCodeComponent,
+    ConfirmActionModalComponent,
   ]
 })
 export class SharedModule { }

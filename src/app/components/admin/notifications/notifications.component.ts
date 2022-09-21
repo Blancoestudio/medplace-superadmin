@@ -12,7 +12,7 @@ export class NotificationsComponent implements OnInit {
   deleteModal: boolean = false;
   requestDeleted: boolean = false;
 
-  @Input() dataTable = [
+  dataTable = [
     {
       name: 'Jorge Perez',
       cod: '1234',

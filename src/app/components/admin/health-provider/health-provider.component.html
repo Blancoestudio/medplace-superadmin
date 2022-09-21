@@ -1,0 +1,103 @@
+<div class="modal fade" [ngClass]="{'show d-block': modalProvider}" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-centered animate__animated animate__fadeInDown animate__faster">
+    <div class="modal-content rounded-4 overflow-hidden">
+      <app-add-provider
+        [onEditProvider]="editProvider"
+        (onAddProvider)="addProvider()"
+        (onCloseModal)="toggleModalProvider('close')"></app-add-provider>
+    </div>
+  </div>
+</div>
+
+<app-confirm-action-modal
+  [show]="confirmDelete"
+  action="eliminar"
+  actionEffect="eliminado"
+  (onDismiss)="confirmDelete = false"
+  (onResponse)="confirmResponse($event)"></app-confirm-action-modal>
+
+<app-confirm-action-modal
+  [show]="confirmPause"
+  action="pausar"
+  actionEffect="pausado"
+  (onDismiss)="confirmPause = false"
+  (onResponse)="confirmResponse($event)"></app-confirm-action-modal>
+
+<app-page-header
+  [userName]="'Francisco'"
+  info="Bienvenido a tu Dashboard."></app-page-header>
+
+<div class="page-wrapper animate__animated animate__fadeIn">
+  <div class="container">
+
+    <div class="row align-items-end mb-4">
+      <div class="col">
+        <h5>Prestadores de salud</h5>
+      </div>
+      <div class="col d-flex justify-content-end">
+        <button
+          type="button"
+          class="btn btn-outline-dark btn-mid me-4"
+          (click)="confirmPause = true">
+            Pausar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-dark btn-mid"
+          (click)="confirmDelete = true">
+            Eliminar
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+
+        <div class="table-cmp table-cmp--selectable">
+          <div class="table-cmp__header">
+            <div class="table-cmp__row">
+              <div class="table-cmp__col"></div>
+              <div class="table-cmp__col">Prestador de salud</div>
+              <div class="table-cmp__col" style="flex-grow: .5;">Rut</div>
+              <div class="table-cmp__col text-center">Administradores</div>
+              <div class="table-cmp__col text-center" style="flex-grow: .25;">Código</div>
+              <div class="table-cmp__col text-center">Información</div>
+            </div>
+          </div>
+
+          <div class="table-cmp__body">
+            <div class="table-cmp__row" *ngFor="let item of dataTable">
+              <div class="table-cmp__col">
+                <app-checkbox-cmp></app-checkbox-cmp>
+              </div>
+              <div class="table-cmp__col"> {{ item.provider }} </div>
+              <div class="table-cmp__col" style="flex-grow: .5;"> {{ item.rut }} </div>
+              <div class="table-cmp__col text-center"> {{ item.admin.length }} </div>
+              <div class="table-cmp__col text-center" style="flex-grow: .25;"> {{ item.cod }} </div>
+              <div class="table-cmp__col text-center">
+                <button
+                  type="button"
+                  (click)="toggleModalProvider('edit')"
+                  class="btn btn-outline-dark btn-mid">
+                    Detalles
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col text-center">
+        <button
+          class="btn btn-primary btn-sm px-3 py-2 rounded-3"
+          (click)="toggleModalProvider('add')">
+            Agregar Prestador
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

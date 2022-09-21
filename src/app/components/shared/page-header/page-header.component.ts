@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PageHeaderComponent implements OnInit {
 
   @Input() userName: string = 'userName';
+  @Input() info: string = 'Info';
 
   today: number = Date.now();
   todayDate : Date = new Date();

@@ -22,11 +22,11 @@ export class MenuSidebarComponent implements OnInit {
       name: "Notificaciones",
       url: "notifications"
     },
-    // {
-    //   icon: "icon-prestador-de-salud",
-    //   name: "Dashboard",
-    //   url: "/admin"
-    // },
+    {
+      icon: "icon-prestador-de-salud",
+      name: "Dashboard",
+      url: "health-provider"
+    },
     // {
     //   icon: "icon-users",
     //   name: "Dashboard",

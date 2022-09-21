@@ -6,13 +6,16 @@ import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { NotificationsComponent } from './notifications/notifications.component';
-
+import { HealthProviderComponent } from './health-provider/health-provider.component';
+import { AddProviderComponent } from './health-provider/add-provider/add-provider.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
     DashboardComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    HealthProviderComponent,
+    AddProviderComponent
   ],
   imports: [
     CommonModule,
