@@ -8,6 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { HealthProviderComponent } from './health-provider/health-provider.component';
 import { AddProviderComponent } from './health-provider/add-provider/add-provider.component';
+import { ActionProviderComponent } from './health-provider/action-provider/action-provider.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { AddProviderComponent } from './health-provider/add-provider/add-provide
     DashboardComponent,
     NotificationsComponent,
     HealthProviderComponent,
-    AddProviderComponent
+    AddProviderComponent,
+    ActionProviderComponent,
+    AdminUsersComponent
   ],
   imports: [
     CommonModule,

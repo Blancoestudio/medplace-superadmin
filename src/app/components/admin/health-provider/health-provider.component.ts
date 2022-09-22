@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HealthProviderComponent implements OnInit {
 
+  modalAction: boolean = false;
+  actionProvider: string = '';
+
+
   confirmDelete: boolean = false;
   confirmPause: boolean = false;
 
@@ -61,6 +65,17 @@ export class HealthProviderComponent implements OnInit {
 
   confirmResponse(resp: boolean) {
     console.log(resp);
+  }
+
+  dismissAction() {
+    this.confirmDelete = false
+    this.confirmPause = false
+  }
+
+  triggerAction(action: string) {
+    // console.log(this.actionProvider);
+    this.actionProvider = action;
+    this.modalAction = true;
   }
 
 

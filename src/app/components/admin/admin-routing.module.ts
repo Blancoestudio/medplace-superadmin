@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { HealthProviderComponent } from './health-provider/health-provider.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'health-provider',
         component: HealthProviderComponent
+      },
+      {
+        path: 'admin-users',
+        component: AdminUsersComponent
       }
     ]
   }

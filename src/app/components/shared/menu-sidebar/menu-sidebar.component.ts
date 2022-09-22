@@ -27,11 +27,11 @@ export class MenuSidebarComponent implements OnInit {
       name: "Dashboard",
       url: "health-provider"
     },
-    // {
-    //   icon: "icon-users",
-    //   name: "Dashboard",
-    //   url: "/admin"
-    // },
+    {
+      icon: "icon-users",
+      name: "Administradores",
+      url: "admin-users"
+    },
     // {
     //   icon: "icon-doc",
     //   name: "Dashboard",

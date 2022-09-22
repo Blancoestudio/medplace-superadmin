@@ -9,19 +9,10 @@
   </div>
 </div>
 
-<app-confirm-action-modal
-  [show]="confirmDelete"
-  action="eliminar"
-  actionEffect="eliminado"
-  (onDismiss)="confirmDelete = false"
-  (onResponse)="confirmResponse($event)"></app-confirm-action-modal>
-
-<app-confirm-action-modal
-  [show]="confirmPause"
-  action="pausar"
-  actionEffect="pausado"
-  (onDismiss)="confirmPause = false"
-  (onResponse)="confirmResponse($event)"></app-confirm-action-modal>
+<app-action-provider
+  [show]="modalAction"
+  [action]="actionProvider"
+  (onDismiss)="modalAction = false"></app-action-provider>
 
 <app-page-header
   [userName]="'Francisco'"
@@ -38,13 +29,19 @@
         <button
           type="button"
           class="btn btn-outline-dark btn-mid me-4"
-          (click)="confirmPause = true">
+          (click)="triggerAction('activar')">
+            Activar
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-dark btn-mid me-4"
+          (click)="triggerAction('pausar')">
             Pausar
         </button>
         <button
           type="button"
           class="btn btn-outline-dark btn-mid"
-          (click)="confirmDelete = true">
+          (click)="triggerAction('eliminar')">
             Eliminar
         </button>
       </div>
