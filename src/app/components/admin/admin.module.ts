@@ -10,6 +10,7 @@ import { HealthProviderComponent } from './health-provider/health-provider.compo
 import { AddProviderComponent } from './health-provider/add-provider/add-provider.component';
 import { ActionProviderComponent } from './health-provider/action-provider/action-provider.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { BillingComponent } from './billing/billing.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AdminUsersComponent } from './admin-users/admin-users.component';
     HealthProviderComponent,
     AddProviderComponent,
     ActionProviderComponent,
-    AdminUsersComponent
+    AdminUsersComponent,
+    BillingComponent
   ],
   imports: [
     CommonModule,

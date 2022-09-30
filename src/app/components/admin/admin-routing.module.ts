@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { HealthProviderComponent } from './health-provider/health-provider.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { BillingComponent } from './billing/billing.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'admin-users',
         component: AdminUsersComponent
+      },
+      {
+        path: 'billing',
+        component: BillingComponent
       }
     ]
   }

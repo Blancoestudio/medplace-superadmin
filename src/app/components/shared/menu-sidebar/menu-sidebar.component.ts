@@ -32,11 +32,11 @@ export class MenuSidebarComponent implements OnInit {
       name: "Administradores",
       url: "admin-users"
     },
-    // {
-    //   icon: "icon-doc",
-    //   name: "Dashboard",
-    //   url: "/admin"
-    // },
+    {
+      icon: "icon-doc",
+      name: "Facturación",
+      url: "billing"
+    },
   ];
 
   constructor() { }
