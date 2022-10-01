@@ -37,6 +37,11 @@ export class MenuSidebarComponent implements OnInit {
       name: "Facturación",
       url: "billing"
     },
+    {
+      icon: "icon-settings",
+      name: "Configuración",
+      url: "setting"
+    },
   ];
 
   constructor() { }

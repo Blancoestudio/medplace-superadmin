@@ -11,6 +11,9 @@ import { AddProviderComponent } from './health-provider/add-provider/add-provide
 import { ActionProviderComponent } from './health-provider/action-provider/action-provider.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { BillingComponent } from './billing/billing.component';
+import { SettingComponent } from './setting/setting.component';
+import { AddProfessionComponent } from './setting/add-profession/add-profession.component';
+import { ActionProfessionComponent } from './setting/action-profession/action-profession.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { BillingComponent } from './billing/billing.component';
     AddProviderComponent,
     ActionProviderComponent,
     AdminUsersComponent,
-    BillingComponent
+    BillingComponent,
+    SettingComponent,
+    AddProfessionComponent,
+    ActionProfessionComponent
   ],
   imports: [
     CommonModule,

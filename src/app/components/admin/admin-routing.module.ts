@@ -6,6 +6,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { HealthProviderComponent } from './health-provider/health-provider.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { BillingComponent } from './billing/billing.component';
+import { SettingComponent } from './setting/setting.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'billing',
         component: BillingComponent
+      },
+      {
+        path: 'setting',
+        component: SettingComponent
       }
     ]
   }

@@ -10,6 +10,7 @@ import { CheckboxCmpComponent } from './checkbox-cmp/checkbox-cmp.component';
 import { ModalCmpComponent } from './modal-cmp/modal-cmp.component';
 import { PinCodeComponent } from './pin-code/pin-code.component';
 import { ConfirmActionModalComponent } from './confirm-action-modal/confirm-action-modal.component';
+import { RadioBtnComponent } from './radio-btn/radio-btn.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ConfirmActionModalComponent } from './confirm-action-modal/confirm-acti
     ModalCmpComponent,
     PinCodeComponent,
     ConfirmActionModalComponent,
+    RadioBtnComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +39,7 @@ import { ConfirmActionModalComponent } from './confirm-action-modal/confirm-acti
     ModalCmpComponent,
     PinCodeComponent,
     ConfirmActionModalComponent,
+    RadioBtnComponent,
   ]
 })
 export class SharedModule { }
