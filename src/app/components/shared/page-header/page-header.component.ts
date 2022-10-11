@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-page-header',
@@ -15,9 +16,10 @@ export class PageHeaderComponent implements OnInit {
   todayString : string = new Date().toDateString();
   todayISOString : string = new Date().toISOString();
 
-  constructor() { }
+  constructor(public api: ApiService) { }
 
   ngOnInit(): void {
+    this.userName = this.api.getProfile('name')
   }
 
 }

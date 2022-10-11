@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-health-provider',
@@ -21,7 +22,7 @@ export class HealthProviderComponent implements OnInit {
   dataTable = [
     {
       name: 'Jorge Perez',
-      cod: '1234',
+      accesscode: '1234',
       rut: '11.111.111-1',
       mail: 'jorge@gmail.com',
       provider: 'Cliníca Davíla',
@@ -30,9 +31,12 @@ export class HealthProviderComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(public api: ApiService) { }
 
   ngOnInit(): void {
+    this.api.getCustomers().subscribe(data => {
+      this.dataTable = data;
+    });
   }
 
   toggleModalProvider(action: string) {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-login',
@@ -15,17 +16,39 @@ export class LoginComponent implements OnInit {
   faEyeSlash = faEyeSlash;
 
   hide: boolean = true;
+  public userData: any = {
+    email: '',
+    password: '',
+    platform: 'web'
+  };
 
-  constructor( private router: Router ) { }
+  constructor( private router: Router, public api: ApiService ) { }
 
   ngOnInit(): void {
   }
 
   login() {
     this.loading = true;
-    setTimeout(() => {
-      this.router.navigate(['/admin/dashboard'])
-    }, 2000);
+    // this.alertMessage = '';
+    // this.alertShow = false;
+    this.api.login(this.userData).subscribe((data:any) => {
+      console.log(data);
+      // this.alertShow = true;
+      // this.alertResult = 'alert-success';
+      // this.alertMessage = 'Acceso correcto, espere por favor';
+      setTimeout(() => {
+        this.api.setProfile(data);
+        this.api.setToken(data.token);
+        this.router.navigateByUrl('/admin/dashboard');
+        this.loading = false;
+      },1000);
+    }, (err:any) => {
+      //this.api.toastError(err.error.error)
+      // this.alertResult = 'alert-danger';
+      // this.alertShow = true;
+      // this.alertMessage = err.error.error ?? 'Error de conexión';
+      this.loading = false;
+      })
   }
 
 }

@@ -6,6 +6,7 @@ import { EntrySystemComponent } from './entry-system.component';
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from '../shared/shared.module';
 import { PasswordRecoveryComponent } from './password-recovery/password-recovery.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PasswordRecoveryComponent } from './password-recovery/password-recovery
   imports: [
     CommonModule,
     SharedModule,
-    EntrySystemRoutingModule
+    EntrySystemRoutingModule, 
+    FormsModule
   ]
 })
 export class EntrySystemModule { }

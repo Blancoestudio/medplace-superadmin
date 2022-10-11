@@ -1,5 +1,5 @@
 <app-page-header
-  [userName]="'Francisco'"
+  [userName]="api.getProfile('name')"
   info="Bienvenido a tu Dashboard."></app-page-header>
 
 <div class="page-wrapper animate__animated animate__fadeIn">
@@ -9,6 +9,9 @@
       <div class="col">
         <div class="box top-group">
           <h5 class="fw-normal">Prestadores:</h5>
+          <div *ngFor="let customer of customers">
+            <p>{{customer.name}}</p>
+          </div>
         </div>
       </div>
 

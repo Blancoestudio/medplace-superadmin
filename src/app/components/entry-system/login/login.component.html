@@ -7,12 +7,12 @@
 
 <div class="field-control">
   <label for="" class="form-label">Email</label>
-  <input type="email" class="form-control" id="" placeholder="Ingrese su email">
+  <input type="email" class="form-control" id="" placeholder="Ingrese su email" [(ngModel)]="userData.email" [disabled]="loading">
 </div>
 <div class="field-control mb-2">
   <label for="" class="form-label">Contraseña</label>
   <div class="suffix-wrapper">
-    <input [type]="hide ? 'password' : 'text'" class="form-control" id="" placeholder="Ingrese su contraseña">
+    <input [type]="hide ? 'password' : 'text'" class="form-control" id="" placeholder="Ingrese su contraseña" [(ngModel)]="userData.password" [disabled]="loading">
     <button class="icon" (click)="hide = !hide">
       <fa-icon *ngIf="hide" [icon]="faEye"></fa-icon>
       <fa-icon *ngIf="!hide" [icon]="faEyeSlash"></fa-icon>
