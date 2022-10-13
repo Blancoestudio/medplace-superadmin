@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-checkbox-cmp',
@@ -8,6 +8,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 export class CheckboxCmpComponent implements OnInit {
 
   @Input() checked: boolean = false;
+  @Output() toggle: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -15,7 +16,8 @@ export class CheckboxCmpComponent implements OnInit {
   }
 
   toggleField() {
-    this.checked = !this.checked
+    this.checked = !this.checked;
+    this.toggle.emit(this.checked);
   }
 
 }

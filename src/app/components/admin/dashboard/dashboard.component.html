@@ -8,7 +8,7 @@
     <div class="row mb-4">
       <div class="col">
         <div class="box top-group">
-          <h5 class="fw-normal">Prestadores:</h5>
+          <h5 class="fw-normal">Prestadores: {{customers.length}}</h5>
           <div *ngFor="let customer of customers">
             <p>{{customer.name}}</p>
           </div>
@@ -18,7 +18,7 @@
       <div class="col">
         <div class="box top-group active">
           <h5 class="fw-normal">Turnos  actuales</h5>
-          <p>Periodo: 1 Agosto - Act.</p>
+          <p>Periodo: 1 Octubre - Act.</p>
           <p class="mb-0" style="font-size: 1.2em;">15 Turnos</p>
         </div>
       </div>
@@ -30,11 +30,11 @@
           <table class="table">
             <tbody>
               <tr>
-                <td>Turnos  Julio</td>
+                <td>Turnos  Agosto</td>
                 <td>20 turnos</td>
               </tr>
               <tr>
-                <td>Turnos  Julio</td>
+                <td>Turnos  Septiembre</td>
                 <td>17 turnos</td>
               </tr>
             </tbody>
@@ -70,7 +70,7 @@
           <div class="tab-list">
             <div class="tab bg-white text-primary">
               <div class="row h-100 align-items-center">
-                <div class="col">Tecnólogo</div>
+                <div class="col">Región Metropolitana</div>
                 <div class="col-4">
                   <div class="d-flex align-items-center">
                     <img src="assets/svg/icon-pin.svg" class="me-3" alt="icono usuario">

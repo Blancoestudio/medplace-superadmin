@@ -2,6 +2,7 @@
   <div class="modal-dialog modal-xl modal-dialog-centered animate__animated animate__fadeInDown animate__faster">
     <div class="modal-content rounded-4 overflow-hidden">
       <app-add-provider
+        [data]="selCustomer"
         [onEditProvider]="editProvider"
         (onAddProvider)="addProvider()"
         (onCloseModal)="toggleModalProvider('close')"></app-add-provider>
@@ -10,13 +11,10 @@
 </div>
 
 <app-action-provider
+  [items]="selCustomers"
   [show]="modalAction"
   [action]="actionProvider"
-  (onDismiss)="modalAction = false"></app-action-provider>
-
-<app-page-header
-  [userName]="'Francisco'"
-  info="Bienvenido a tu Dashboard."></app-page-header>
+  (onDismiss)="dismissAction()"></app-action-provider>
 
 <div class="page-wrapper animate__animated animate__fadeIn">
   <div class="container">
@@ -65,7 +63,7 @@
           <div class="table-cmp__body">
             <div class="table-cmp__row" *ngFor="let item of dataTable">
               <div class="table-cmp__col">
-                <app-checkbox-cmp></app-checkbox-cmp>
+                <app-checkbox-cmp (toggle)="toggleListItem($event, item._id)"></app-checkbox-cmp>
               </div>
               <div class="table-cmp__col"> {{ item.name }} </div>
               <div class="table-cmp__col" style="flex-grow: .5;"> {{ item.rut }} </div>
@@ -74,7 +72,7 @@
               <div class="table-cmp__col text-center">
                 <button
                   type="button"
-                  (click)="toggleModalProvider('edit')"
+                  (click)="toggleModalProvider('edit', item._id)"
                   class="btn btn-outline-dark btn-mid">
                     Detalles
                 </button>

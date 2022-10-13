@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-action-provider',
@@ -9,6 +10,7 @@ export class ActionProviderComponent implements OnInit {
 
   @Input() show: boolean = false;
   @Input() action: string = '';
+  @Input() items: string[] = [];
 
   @Output() onDismiss: EventEmitter<any> = new EventEmitter();
 
@@ -26,7 +28,7 @@ export class ActionProviderComponent implements OnInit {
     'eliminar': 'eliminado'
   }
 
-  constructor() { }
+  constructor(public api: ApiService) { }
 
   ngOnInit(): void {
   }
@@ -38,6 +40,17 @@ export class ActionProviderComponent implements OnInit {
   }
 
   triggerAction(action: string) {
+    switch (action) {
+      case 'eliminar':
+        this.items.forEach(item => {
+          this.api.removeCustomer(item).subscribe(data => console.log(data));
+        });
+      break;
+    
+      default:
+        console.log(action)
+      break;
+    }
     this.loading = true;
     setTimeout(() => {
       this.completed = true;

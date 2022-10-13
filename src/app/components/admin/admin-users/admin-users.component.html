@@ -60,8 +60,8 @@
             <div class="table-cmp__toggable-row" *ngFor="let item of adminList" [ngClass]="{'open': item.open}">
               <div class="table-cmp__row">
                 <div class="table-cmp__col"></div>
-                <div class="table-cmp__col"> Clínica Davíla </div>
-                <div class="table-cmp__col"> 11.111.111-1 </div>
+                <div class="table-cmp__col">{{item.name}}</div>
+                <div class="table-cmp__col">{{item.rut}}</div>
                 <div class="table-cmp__col"> 3 </div>
                 <div class="table-cmp__col">
                   <button type="button" class="btn btn-link" (click)="item.open = !item.open">

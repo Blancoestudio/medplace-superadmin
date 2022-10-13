@@ -14,6 +14,7 @@ import { BillingComponent } from './billing/billing.component';
 import { SettingComponent } from './setting/setting.component';
 import { AddProfessionComponent } from './setting/add-profession/add-profession.component';
 import { ActionProfessionComponent } from './setting/action-profession/action-profession.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ActionProfessionComponent } from './setting/action-profession/action-pr
   imports: [
     CommonModule,
     SharedModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

@@ -19,7 +19,7 @@ export class HealthProviderComponent implements OnInit {
   providerAdded: boolean = false;
   editProvider: boolean = false;
 
-  dataTable = [
+  dataTable: any[] = [
     {
       name: 'Jorge Perez',
       accesscode: '1234',
@@ -27,9 +27,22 @@ export class HealthProviderComponent implements OnInit {
       mail: 'jorge@gmail.com',
       provider: 'Cliníca Davíla',
       register: true,
-      admin: ['', '']
+      admin: ['', ''],
+      _id: '',
     }
-  ]
+  ];
+  
+  selCustomer: any = {
+    id: '',
+    name: '',
+    rut: '',
+    review: '',
+    address: '',
+    email: '',
+    website: ''
+  };
+  
+  selCustomers: string[] = [];
 
   constructor(public api: ApiService) { }
 
@@ -39,15 +52,17 @@ export class HealthProviderComponent implements OnInit {
     });
   }
 
-  toggleModalProvider(action: string) {
+  toggleModalProvider(action: string, id?: string) {
     switch (action) {
       case 'add':
         this.modalProvider = true;
         this.editProvider = false;
+        this.selCustomer = {};
         break;
       case 'edit':
         this.modalProvider = true;
         this.editProvider = true;
+        this.selCustomer = this.dataTable.find(item => item._id === id);
         break;
       case 'close':
         this.modalProvider = false;
@@ -65,22 +80,38 @@ export class HealthProviderComponent implements OnInit {
     this.confirmDelete = true;
   }
 
-  addProvider(){}
+  addProvider(){
+    this.api.getCustomers().subscribe(data => {
+      this.dataTable = data;
+    });
+  }
 
   confirmResponse(resp: boolean) {
     console.log(resp);
   }
 
   dismissAction() {
-    this.confirmDelete = false
-    this.confirmPause = false
+    // this.confirmDelete = false
+    // this.confirmPause = false
+    this.modalAction = false;
+    this.api.getCustomers().subscribe(data => {
+      this.dataTable = data;
+    });
   }
 
   triggerAction(action: string) {
-    // console.log(this.actionProvider);
     this.actionProvider = action;
+    // console.log(this.actionProvider);
     this.modalAction = true;
   }
 
-
+  toggleListItem(event: Event, id: string){
+    if(event){
+      this.selCustomers.push(id);
+    }
+    else{
+      const index = this.selCustomers.findIndex(item => item === id)
+      const [item] = this.selCustomers.splice(index, 1);
+    }
+  }
 }
