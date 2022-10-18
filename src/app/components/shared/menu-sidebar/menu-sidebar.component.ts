@@ -24,7 +24,7 @@ export class MenuSidebarComponent implements OnInit {
     },
     {
       icon: "icon-prestador-de-salud",
-      name: "Dashboard",
+      name: "Prestadores de salud",
       url: "health-provider"
     },
     {

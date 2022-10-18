@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-setting',
@@ -13,10 +14,20 @@ export class SettingComponent implements OnInit {
   actionProfessionModal: boolean = false;
 
   action: string = '';
+  
+  jobs = [{
+    name: '',
+    skippable: ''
+  }];
+  
+  form = {};
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.api.getJobs().subscribe(data => {
+      this.jobs = data;
+    })
   }
 
   addProfession(action: string) {

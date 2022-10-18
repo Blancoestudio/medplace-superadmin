@@ -12,69 +12,6 @@ export class ApiService {
 
   constructor(private http: HttpClient, public router: Router) { }
 
-/*   toastError(msg?:string) {
-    Swal.fire({
-      title: 'Error',
-      text: (msg ? msg : 'Error al comunicar'),
-      icon: 'error',
-      toast: true,
-      position: 'top-right',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true
-    });
-  } */
-
- /*  toastOk(msg?:string) {
-    Swal.fire({
-      title: 'Listo',
-      text: (msg ? msg : 'Realizado correctamente'),
-      icon: 'success',
-      toast: true,
-      position: 'top-right',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true
-    });
-  } */
-  
- /*  confirmModal(title?:string, msg?:string) {
-    return Swal.fire({
-      title: (title ? title : '¿Estas seguro?'),
-      text: (msg ? msg : "Puedes cancelar o volver si no estas seguro."),
-      iconHtml: '<img src="assets/svg/icon-alert.svg">',
-      confirmButtonText: 'Aceptar',
-      confirmButtonColor: '#089BAB',
-      showCloseButton: true,
-      showCancelButton: true,
-      cancelButtonText: 'Volver',
-      buttonsStyling: false,
-      reverseButtons: true,
-      customClass: {
-        icon: 'border-0',
-        htmlContainer: 'text-center my-3',
-        confirmButton: 'btn btn-primary text-white w-40',
-        cancelButton: 'btn btn-outline-primary me-3 w-40',
-        actions: ' w-100'
-      },
-    })
-  } */
-/*   ok(title?:string, text?:string) {
-    return Swal.fire({
-      title: (title ? title : 'Listo'),
-      text: (text ? text : 'Realizado correctamente'),
-      icon: 'success',
-      confirmButtonText: 'Aceptar',
-      confirmButtonColor: '#089BAB',
-      showCloseButton: false,
-      buttonsStyling: false,
-      customClass: {
-        htmlContainer: 'text-center my-3',
-        confirmButton: 'btn btn-primary text-white w-100',
-      },
-    })
-  } */
-
   setToken(token: string) { 
     localStorage.setItem('medplaceToken', token);
   }
@@ -165,6 +102,15 @@ export class ApiService {
     return this.delete('/v1/store/'+id);
   }
   
+  /* User management */
+  getUsers(){
+    return this.get('/v1/user');
+  }
+  
+  /* Jobs management */
+  getJobs(){
+    return this.get('/v1/job');
+  }
 
   /* Auth services */
   login(data:any) {

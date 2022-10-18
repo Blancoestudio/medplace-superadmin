@@ -25,6 +25,10 @@ export class LoginComponent implements OnInit {
   constructor( private router: Router, public api: ApiService ) { }
 
   ngOnInit(): void {
+    if (location.href.indexOf('localhost') > -1) {
+      this.userData.email = 'rosses@blanco-brand.com';
+      this.userData.password = '123456';
+    }
   }
 
   login() {

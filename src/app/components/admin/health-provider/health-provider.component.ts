@@ -19,18 +19,7 @@ export class HealthProviderComponent implements OnInit {
   providerAdded: boolean = false;
   editProvider: boolean = false;
 
-  dataTable: any[] = [
-    {
-      name: 'Jorge Perez',
-      accesscode: '1234',
-      rut: '11.111.111-1',
-      mail: 'jorge@gmail.com',
-      provider: 'Cliníca Davíla',
-      register: true,
-      admin: ['', ''],
-      _id: '',
-    }
-  ];
+  dataTable: any[] = [];
   
   selCustomer: any = {
     id: '',
@@ -47,8 +36,18 @@ export class HealthProviderComponent implements OnInit {
   constructor(public api: ApiService) { }
 
   ngOnInit(): void {
-    this.api.getCustomers().subscribe(data => {
-      this.dataTable = data;
+    this.api.getCustomers().subscribe((customers: any[]) => {
+      this.api.getUsers().subscribe((users: any[]) => {
+        this.dataTable = customers.map((customer: any) => {
+          return {
+            ...customer,
+            admin: users.map((user: {admins: any[]}) => {
+              const item = user.admins.find(item => item.customer === customer._id);
+              return item ? user : undefined;
+            }).filter(item => item)
+          }
+        });
+      });
     });
   }
 
