@@ -62,27 +62,27 @@
                 <div class="table-cmp__col"></div>
                 <div class="table-cmp__col">{{item.name}}</div>
                 <div class="table-cmp__col">{{item.rut}}</div>
-                <div class="table-cmp__col"> 3 </div>
+                <div class="table-cmp__col">{{item.admin?.length}}</div>
                 <div class="table-cmp__col">
-                  <button type="button" class="btn btn-link" (click)="item.open = !item.open">
+                  <button *ngIf="item.admin.length" type="button" class="btn btn-link" (click)="item.open = !item.open">
                     <fa-icon [icon]="!item.open ? faAngleDown : faAngleUp"></fa-icon>
                   </button>
                 </div>
               </div>
-              <div class="table-inner" *ngFor="let item of ['','']">
+              <div class="table-inner" *ngFor="let user of item.admin">
                 <div class="table-inner__row">
                   <div class="table-inner__col"></div>
                   <div class="table-inner__col">
                     <img src="assets/svg/icon-user.svg" class="me-2" alt="icono usuario">
-                    Francisco González Rojas
+                    {{user.name}}
                   </div>
                   <div class="table-inner__col">
                     <img src="assets/svg/icon-mail.svg" class="me-2" alt="icono correo">
-                    franciscog@davila.cl
+                    {{user.email}}
                   </div>
                   <div class="table-inner__col">
                     <img src="assets/svg/icon-calendar.svg" class="me-2" alt="icono calendario">
-                    Fecha Ingreso: 00/00/0000
+                    Fecha Ingreso: (No disponible)
                   </div>
                   <div class="table-inner__col">
 

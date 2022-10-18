@@ -16,20 +16,25 @@ export class AdminUsersComponent implements OnInit {
   faAngleUp = faAngleUp;
   faAngleDown = faAngleDown;
 
-  adminList: any[] = [
-    { open: false },
-    { open: false }
-  ]
+  adminList: any[] = [];
 
   constructor(public api: ApiService) { }
 
   ngOnInit(): void {
-    this.api.getCustomers().subscribe((data: any[]) => {
-      this.adminList = data.map(item => {
-        item.open = false;
-        return item;
-      })
-    })
+    this.api.getCustomers().subscribe((customers: any[]) => {
+      this.api.getUsers().subscribe((users: any[]) => {
+        this.adminList = customers.map((customer: any) => {
+          customer.open = false;
+          return {
+            ...customer,
+            admin: users.map((user: {admins: any[]}) => {
+              const item = user.admins.find(item => item.customer === customer._id);
+              return item ? user : undefined;
+            }).filter(item => item)
+          }
+        });
+      });
+    });
   }
 
   toggleShareModal( state: boolean ) {
