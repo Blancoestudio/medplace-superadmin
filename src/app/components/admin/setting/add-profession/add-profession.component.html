@@ -18,7 +18,9 @@
                   [disabled]="edit"
                   type="text"
                   class="form-control border-end-0"
-                  placeholder="Ingrese nombre">
+                  placeholder="Ingrese nombre"
+                  name="name"
+                  [(ngModel)]="job.name">
                 <span
                   *ngIf="edit"
                   (click)="edit = false"
@@ -32,8 +34,8 @@
               <label class="form-label">¿Requiere datos complementarios?</label>
               <p style="font-size: 12px;">*Registro de SuperIntendencia de Salud, Carnet de Vacunas o Anticuerpos</p>
               <div>
-                <app-radio-btn radioName="data-required">Si</app-radio-btn>
-                <app-radio-btn radioName="data-required">No</app-radio-btn>
+                <app-radio-btn radioName="data-required" (click)="job.skippable=true">Si</app-radio-btn>
+                <app-radio-btn radioName="data-required" (click)="job.skippable=false">No</app-radio-btn>
               </div>
             </div>
 
@@ -45,7 +47,7 @@
               <button
                 *ngIf="!edit"
                 type="button"
-                (click)="close()"
+                (click)="addProfession()"
                 class="btn btn-primary w-50">Agregar </button>
             </div>
           </div>

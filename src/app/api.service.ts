@@ -111,6 +111,9 @@ export class ApiService {
   getJobs(){
     return this.get('/v1/job');
   }
+  addJob(job: any){
+    return this.post('/v1/job', job);
+  }
 
   /* Auth services */
   login(data:any) {

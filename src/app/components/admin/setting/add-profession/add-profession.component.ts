@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-add-profession',
@@ -16,13 +17,22 @@ export class AddProfessionComponent implements OnInit {
 
   faXmark = faXmark;
 
-  constructor() { }
+  job = {
+    name: '',
+    skippable: true
+  };
+
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
   }
 
   addProfession() {
-    this.addProfessionModal = !this.addProfessionModal
+    this.api.addJob(this.job).subscribe(data => {
+      console.log(data)
+      this.addProfessionModal = !this.addProfessionModal
+      this.onClose.emit(false);
+    });
   }
 
   close() {

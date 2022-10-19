@@ -30,8 +30,7 @@ export class SettingComponent implements OnInit {
     })
   }
 
-  addProfession(action: string) {
-
+  addProfession(action: string) {    
     if (action === 'edit') {
       this.edit = true
     } else {
@@ -45,4 +44,10 @@ export class SettingComponent implements OnInit {
     this.action = action;
   }
 
+  getProfessions($event: any){
+    this.addProfessionModal = $event;
+    this.api.getJobs().subscribe(data => {
+      this.jobs = data;
+    });
+  }
 }
