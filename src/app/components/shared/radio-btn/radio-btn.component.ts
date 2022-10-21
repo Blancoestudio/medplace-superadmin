@@ -41,7 +41,8 @@ export class RadioBtnComponent implements OnInit, ControlValueAccessor {
 
   toggleState(radioCmp: HTMLInputElement) {
     radioCmp.checked = true;
-    this.onChangefn(radioCmp.value);
+    const skippable = radioCmp.value === 'true' ? false : true;
+    this.onChangefn(skippable);
   }
 
 }

@@ -21,6 +21,15 @@ export class SettingComponent implements OnInit {
     _id: ''
   }];
   
+  selJob = {
+    name: '',
+    skippable: false,
+    id: ''
+  };
+  
+  selJobs: string[] = [];
+  selId: string = '';
+  
   form = {};
 
   constructor(private api: ApiService) { }
@@ -31,22 +40,41 @@ export class SettingComponent implements OnInit {
     })
   }
 
-  addProfession(action: string) {    
-    if (action === 'edit') {
-      this.edit = true
-    } else {
-      this.edit = false
-    }
+  addProfession() {
+    this.edit = false;
     this.addProfessionModal = true;
   }
+  
+  editProfession(id: string){
+    this.edit = true;
+    this.addProfessionModal = true;
+    this.api.getJob(id).subscribe(data => {
+      this.selJob = data
+    })
+  }
 
-  actionProfession( action: string ) {
+  deleteProfession( id: string ) {
     this.actionProfessionModal = true;
-    this.action = action;
+    this.action = 'eliminar';
+    this.selId = id;
+  }
+  
+  pausarProfesion(  ){
+    this.actionProfessionModal = true;
+    this.action = 'pausar';
+    
+    //TODO: pausar profesiones
   }
 
   getProfessions($event: any){
     this.addProfessionModal = $event;
+    this.api.getJobs().subscribe(data => {
+      this.jobs = data;
+    });
+  }
+  
+  onDismissActionModal(){
+    this.actionProfessionModal = false;
     this.api.getJobs().subscribe(data => {
       this.jobs = data;
     });

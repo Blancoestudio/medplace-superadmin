@@ -117,6 +117,12 @@ export class ApiService {
   editJob(job: any){
     return this.post('/v1/job/' + job._id, job);
   }
+  getJob(id: string){
+    return this.get('/v1/job/' + id);
+  }
+  deleteJob(id: string){
+    return this.delete('/v1/job/' + id);
+  }
 
   /* Auth services */
   login(data:any) {

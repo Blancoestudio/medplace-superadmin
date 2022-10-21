@@ -11,21 +11,18 @@
 
         <div class="row justify-content-center">
           <div class="col-9">
-            <form #formProfession="ngForm" (ngSubmit)="addProfession(formProfession)">
+            <form #formProfession="ngForm" (ngSubmit)="addProfession()">
               <div class="field-control">
                 <label class="form-label">Nombre Profesión</label>
                 <div class="input-group mb-3">
                   <input
-                    [disabled]="edit"
+                    [disabled]="edit && !editable"
                     type="text"
                     class="form-control border-end-0"
                     placeholder="Ingrese nombre"
                     name="name"
-                    [(ngModel)]="job.name" ngModel>
-                  <span
-                    *ngIf="edit"
-                    (click)="edit = false"
-                    class="input-group-text border-start-0">
+                    [(ngModel)]="job.name">
+                  <span *ngIf="edit && !editable" (click)="editable = true"   class="input-group-text border-start-0">
                       <img src="assets/svg/icon-edit.svg" alt="icono editar">
                   </span>
                 </div>
@@ -34,14 +31,14 @@
                 <label class="form-label">¿Requiere datos complementarios?</label>
                 <p style="font-size: 12px;">*Registro de SuperIntendencia de Salud, Carnet de Vacunas o Anticuerpos</p>
                 <div>
-                  <app-radio-btn name="data-required" [value]="true" ngModel>Sí</app-radio-btn>
-                  <app-radio-btn name="data-required" [value]="false" ngModel>No</app-radio-btn>
+                  <app-radio-btn name="data-required" [value]="true" [(ngModel)]="job.skippable" [radioChecked]="true">Sí</app-radio-btn>
+                  <app-radio-btn name="data-required" [value]="false" [(ngModel)]="job.skippable">No</app-radio-btn>
                 </div>
               </div>
               <div class="d-flex justify-content-center gap-3 px-5">
                 <button type="button" (click)="close()" class="btn btn-outline-primary w-50">Volver</button>
                 <button *ngIf="!edit" type="submit" class="btn btn-primary w-50">Agregar</button>
-                <button *ngIf="edit" type="submit" class="btn btn-primary w-50">Editar</button>
+                <button *ngIf="edit && editable" type="submit" class="btn btn-primary w-50">Editar</button>
               </div>
             </form>
           </div>

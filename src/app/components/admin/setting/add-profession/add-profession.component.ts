@@ -12,46 +12,53 @@ export class AddProfessionComponent implements OnInit {
 
   @Input() edit: boolean = false;
   @Input() show: boolean = false;
+  @Input() job = {
+    name: '',
+    skippable: false
+  };
   @Output() onClose: EventEmitter<boolean> = new EventEmitter();
-  @ViewChild('btn1') btn1!: any;
-
+  
+  editable = false;
   addProfessionModal: boolean = false;
 
   faXmark = faXmark;
 
-  job = {
-    name: '',
-    skippable: true
-  };
 
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
   }
 
-  addProfession(form: NgForm) {
-    const skippable = form.value['data-required'] === 'true' ? false : true;
-    form.value.skippable = skippable;
-    delete form.value['data-required'];
+  addProfession() {
     if (!this.edit) {
-      this.api.addJob(form.value).subscribe(data => {
-        console.log(data)
-        this.addProfessionModal = !this.addProfessionModal
+      this.api.addJob(this.job).subscribe(data => {
+        console.log(data);
+        this.addProfessionModal = !this.addProfessionModal;
         this.onClose.emit(false);
-        form.resetForm();
+        this.job = {name: '', skippable: false};
       });
     }
     else{
-      this.api.editJob(form.value).subscribe(data => {
+      this.api.editJob(this.job).subscribe(data => {
         console.log(data)
         this.addProfessionModal = !this.addProfessionModal
         this.onClose.emit(false);
-        form.resetForm();
+        this.job = {name: '', skippable: false};
+        this.editable = false;
       });
     }
   }
+  
+  getProfession(id: string){
+    this.api.getJob(id).subscribe(data => {
+      console.log(data);
+      this.job = data;
+    })
+  }
 
   close() {
+    this.editable = false;
+    this.job = {name: '', skippable: false};
     this.onClose.emit(false);
   }
 

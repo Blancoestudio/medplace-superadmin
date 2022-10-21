@@ -1,12 +1,14 @@
 <app-add-profession
   [show]="addProfessionModal"
   [edit]="edit"
+  [job]="selJob"
   (onClose)="getProfessions($event)"></app-add-profession>
 
 <app-action-profession
   [show]="actionProfessionModal"
   [action]="action"
-  (onDismiss)="actionProfessionModal = false"></app-action-profession>
+  [selJob]="selId"
+  (onDismiss)="onDismissActionModal()"></app-action-profession>
 
 
 <app-page-header [userName]="'Francisco'" info="Bienvenido a tu Dashboard."></app-page-header>
@@ -40,7 +42,7 @@
 
           <div class="table-cmp__body">
             <div class="table-cmp__toggable-row" *ngFor="let job of jobs">
-              <div class="table-cmp__row" [id]="job._id">
+              <div class="table-cmp__row">
                 <div class="table-cmp__col">
                   <label class="checkbox-wrapper">
                     <input type="checkbox" [checked]="false">
@@ -50,10 +52,10 @@
                 </div>
                 <div class="table-cmp__col">
                   <ul class="actions">
-                    <li (click)="actionProfession('eliminar')">
+                    <li (click)="deleteProfession(job._id)">
                       <img src="assets/svg/icon-trash.svg" alt="icono basurero">
                     </li>
-                    <li (click)="addProfession('edit')">
+                    <li (click)="editProfession(job._id)">
                       <img src="assets/svg/icon-edit.svg" alt="icono editar">
                     </li>
                   </ul>
@@ -66,11 +68,11 @@
         <div class="d-flex justify-content-center gap-3 my-5">
           <button
             type="button"
-            (click)="actionProfession('pausar')"
-            class="btn btn-outline-dark btn-sm px-3 py-2 rounded-2">Pausar Profesión</button>
+            (click)="pausarProfesion()"
+            class="btn btn-outline-dark btn-sm px-3 py-2 rounded-2" disabled>Pausar Profesión</button>
           <button
             type="button"
-            (click)="addProfession('add')"
+            (click)="addProfession()"
             class="btn btn-primary btn-sm px-3 py-2 rounded-2">Agregar Profesión</button>
         </div>
 

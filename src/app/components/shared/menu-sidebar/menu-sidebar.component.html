@@ -9,11 +9,12 @@
   </div>
   <div class="menu-sidebar-content">
     <ul>
-      <li *ngFor="let item of adminMenu">
+      <li *ngFor="let item of adminMenu; let indice = index">
         <button
           class="btn btn-link"
           [routerLink]="[ item.url ]"
-          routerLinkActive="active" >
+          routerLinkActive="active"
+          [disabled]="indice == 4">
             <span class="icon"><img src="{{'assets/svg/' + item.icon + '.svg'}}" alt="icono"></span>
             <span *ngIf="open">{{ item.name }}</span>
         </button>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-action-profession',
@@ -9,6 +10,8 @@ export class ActionProfessionComponent implements OnInit {
 
   @Input() show: boolean = false;
   @Input() action: string = 'mirar';
+  @Input() jobs: string[] = [];
+  @Input() selJob: string = '';
 
   @Output() onDismiss: EventEmitter<any> = new EventEmitter();
 
@@ -26,7 +29,7 @@ export class ActionProfessionComponent implements OnInit {
     'eliminar': 'eliminada'
   }
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
   }
@@ -38,10 +41,17 @@ export class ActionProfessionComponent implements OnInit {
   }
 
   triggerAction(action: string) {
+    if(action === 'eliminar'){
+      this.api.deleteJob(this.selJob).subscribe(data => {
+        console.log(data);
+      })
+    }
+    
     this.loading = true;
     setTimeout(() => {
       this.completed = true;
       this.loading = false;
+      this.onDismiss.emit();
     }, 1000);
   }
 
