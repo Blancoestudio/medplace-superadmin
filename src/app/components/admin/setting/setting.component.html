@@ -40,7 +40,7 @@
 
           <div class="table-cmp__body">
             <div class="table-cmp__toggable-row" *ngFor="let job of jobs">
-              <div class="table-cmp__row">
+              <div class="table-cmp__row" [id]="job._id">
                 <div class="table-cmp__col">
                   <label class="checkbox-wrapper">
                     <input type="checkbox" [checked]="false">

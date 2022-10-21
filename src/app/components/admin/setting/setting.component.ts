@@ -17,7 +17,8 @@ export class SettingComponent implements OnInit {
   
   jobs = [{
     name: '',
-    skippable: ''
+    skippable: false,
+    _id: ''
   }];
   
   form = {};
@@ -36,7 +37,7 @@ export class SettingComponent implements OnInit {
     } else {
       this.edit = false
     }
-    this.addProfessionModal = !this.addProfessionModal
+    this.addProfessionModal = true;
   }
 
   actionProfession( action: string ) {

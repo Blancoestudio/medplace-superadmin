@@ -99,7 +99,7 @@ export class ApiService {
     return this.post('/v1/store/' + data._id, data);
   }
   removeStore(id:string) {
-    return this.delete('/v1/store/'+id);
+    return this.delete('/v1/store/' + id);
   }
   
   /* User management */
@@ -113,6 +113,9 @@ export class ApiService {
   }
   addJob(job: any){
     return this.post('/v1/job', job);
+  }
+  editJob(job: any){
+    return this.post('/v1/job/' + job._id, job);
   }
 
   /* Auth services */
