@@ -12,12 +12,15 @@ export class AddProviderComponent implements OnInit {
   @Input() onEditProvider: boolean = false;
   @Input() providerAdded: boolean = false;
   @Input() data: any = {
-    name: "",
-    rut: "",
-    review: "",
-    address: "",
-    email: "",
-    website: "",
+    name: '',
+    rut: '',
+    review: '',
+    address: '',
+    email: '',
+    website: '',
+    logo: '',
+    image1: '',
+    image2: '',
   }
 
   @Output() onAddProvider: EventEmitter<any> = new EventEmitter<any>();
@@ -40,24 +43,44 @@ export class AddProviderComponent implements OnInit {
   }
 
   uploadFile(e: any) {
-    let fieldName = e.target.name;
-
-    switch (fieldName) {
-      case 'logoFile':
-        this.fileLogoUploaded = true;
-        break;
-      case 'providerImg1':
-        this.file1Uploaded = true;
-        break;
-      case 'providerImg2':
-        this.file2Uploaded = true;
-        break;
-
-      default:
-        this.fileLogoUploaded = false;
-        this.file1Uploaded = false;
-        this.file2Uploaded = false;
-        break;
+    var files = e.srcElement.files;
+    if (files.length > 0) {
+      let file = files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      
+      let uploadedFile = '';
+      
+      reader.onload = () => {
+        this.api.uploadStoreImage({
+          file: reader.result,
+          name: file.name
+        }).subscribe((data: any) => {
+          uploadedFile = data.url;
+          let fieldName = e.target.name;
+      
+          switch (fieldName) {
+            case 'logoFile':
+              this.fileLogoUploaded = true;
+              this.data.logo = uploadedFile;
+              break;
+            case 'providerImg1':
+              this.file1Uploaded = true;
+              this.data.image1 = uploadedFile;
+              break;
+            case 'providerImg2':
+              this.file2Uploaded = true;
+              this.data.image2 = uploadedFile;
+              break;
+      
+            default:
+              this.fileLogoUploaded = false;
+              this.file1Uploaded = false;
+              this.file2Uploaded = false;
+              break;
+          }
+        });
+      };
     }
   }
 
@@ -71,6 +94,9 @@ export class AddProviderComponent implements OnInit {
       this.loading = false;
       this.providerAdded = true;
     }, 1500);
+    this.fileLogoUploaded = false;
+    this.file1Uploaded = false;
+    this.file2Uploaded = false;
   }
 
   editProvider() {
@@ -83,10 +109,16 @@ export class AddProviderComponent implements OnInit {
       this.closeModal();
       this.loading = false;
     }, 1500);
+    this.fileLogoUploaded = false;
+    this.file1Uploaded = false;
+    this.file2Uploaded = false;
   }
 
   closeModal() {
     this.providerAdded = false;
+    this.fileLogoUploaded = false;
+    this.file1Uploaded = false;
+    this.file2Uploaded = false;
     this.onCloseModal.emit();
   }
 
