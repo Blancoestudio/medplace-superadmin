@@ -21,6 +21,7 @@ export class AddProviderComponent implements OnInit {
     logo: '',
     image1: '',
     image2: '',
+    accesscode: 1234
   }
 
   @Output() onAddProvider: EventEmitter<any> = new EventEmitter<any>();
@@ -86,6 +87,7 @@ export class AddProviderComponent implements OnInit {
 
   addProvider() {
     this.loading = true;
+    this.data.accesscode = Math.floor(Math.random() * 9000 + 1000);
     this.api.addCustomer(this.data).subscribe(data => {
       console.log(data);
       this.onAddProvider.emit();

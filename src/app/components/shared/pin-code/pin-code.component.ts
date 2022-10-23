@@ -20,8 +20,6 @@ export class PinCodeComponent implements OnInit {
   }
 
   constructor() {
-    console.log(this.cod);
-
   }
 
   ngOnInit(): void {
