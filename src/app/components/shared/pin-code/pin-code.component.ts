@@ -7,14 +7,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PinCodeComponent implements OnInit {
 
-  pinCode: number[] = [];
-  @Input() code: number = 1234;
+  @Input() code: number | string = 1234;
 
-  public get cod() : number[] {
+  public get cod() : string[] {
     let output = [],
-    sNumber = this.code.toString();
+    sNumber = typeof this.code == 'number' ? this.code.toString() : this.code;
     for (var i = 0, len = sNumber.length; i < len; i += 1) {
-        output.push(+sNumber.charAt(i));
+        output.push(sNumber.charAt(i));
     }
     return output;
   }

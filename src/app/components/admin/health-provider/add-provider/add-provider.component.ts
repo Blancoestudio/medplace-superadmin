@@ -87,7 +87,7 @@ export class AddProviderComponent implements OnInit {
 
   addProvider() {
     this.loading = true;
-    this.data.accesscode = Math.floor(Math.random() * 9000 + 1000);
+    this.data.accesscode = Math.floor(Math.random() * 90000 + 10000);
     this.api.addCustomer(this.data).subscribe(data => {
       console.log(data);
       this.onAddProvider.emit();

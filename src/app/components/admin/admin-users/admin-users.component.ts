@@ -12,6 +12,7 @@ export class AdminUsersComponent implements OnInit {
 
   shareCodeModal: boolean = false;
   codeShared: boolean = false;
+  selCode: string = '00000';
 
   faAngleUp = faAngleUp;
   faAngleDown = faAngleDown;
@@ -37,7 +38,11 @@ export class AdminUsersComponent implements OnInit {
     });
   }
 
-  toggleShareModal( state: boolean ) {
+  toggleShareModal( state: boolean, id?: string ) {
+    if (id) {
+      this.selCode = id;
+    }
+    
     this.shareCodeModal = state;
     if (!state) {
       this.codeShared = false;

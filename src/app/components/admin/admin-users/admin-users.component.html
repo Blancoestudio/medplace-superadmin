@@ -10,7 +10,7 @@
           <div class="animate__animated animate__fadeIn">
             <h5>Compartir código por email</h5>
             <div class="my-4">
-              <app-pin-code [code]="12345"></app-pin-code>
+              <app-pin-code [code]="selCode"></app-pin-code>
             </div>
             <p>Enviaremos el codigo de acceso al<br/> correo añadido del usuario</p>
             <button type="button" class="btn btn-primary btn-cmp w-50 mt-4 mb-3" (click)="codeShared = !codeShared">Enviar Correo</button>
@@ -87,15 +87,15 @@
                   <div class="table-inner__col">
 
                     <ul class="actions">
-                      <li (click)="toggleShareModal(true)">
+                      <li (click)="toggleShareModal(true, user.authcode)">
                         <img src="assets/svg/icon-share.svg" alt="icono ">
                       </li>
-                      <li (click)="1+1">
+                      <!-- <li (click)="1+1">
                         <img src="assets/svg/icon-circle-x.svg" alt="icono ">
-                      </li>
-                      <li (click)="1+1">
+                      </li> -->
+                    <!--   <li (click)="1+1">
                         <img src="assets/svg/icon-circle-check.svg" alt="icono ">
-                      </li>
+                      </li> -->
                     </ul>
 
                   </div>
