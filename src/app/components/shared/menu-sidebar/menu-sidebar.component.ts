@@ -17,11 +17,11 @@ export class MenuSidebarComponent implements OnInit {
       name: "Dashboard",
       url: "dashboard"
     },
-    {
+/*     {
       icon: "icon-bell-bold",
       name: "Notificaciones",
       url: "notifications"
-    },
+    }, */
     {
       icon: "icon-prestador-de-salud",
       name: "Prestadores de salud",
@@ -32,11 +32,11 @@ export class MenuSidebarComponent implements OnInit {
       name: "Administradores",
       url: "admin-users"
     },
-    {
+/*     {
       icon: "icon-doc",
       name: "Facturación",
       url: "billing"
-    },
+    }, */
     {
       icon: "icon-settings",
       name: "Configuración",
