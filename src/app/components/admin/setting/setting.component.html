@@ -36,6 +36,9 @@
                 </label> -->
                 Profesión
               </div>
+              <div class="table-cmp__col">
+                Requiere datos complementarios
+              </div>
               <div class="table-cmp__col text-end">Acción</div>
             </div>
           </div>
@@ -49,6 +52,9 @@
                     <span class="checkmark"></span>
                   </label> -->
                   {{job.name}}
+                </div>
+                <div class="table-cmp__col">
+                  {{job.skippable ? 'No' : 'Sí'}}
                 </div>
                 <div class="table-cmp__col">
                   <ul class="actions">
