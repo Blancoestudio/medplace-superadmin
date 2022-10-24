@@ -16,8 +16,8 @@
                   <img src="assets/svg/icon-warning.svg" class="me-3" alt="icono alerta" *ngIf="action !== 'eliminar'">
                    {{ action | i18nSelect:actionMap | titlecase }} Profesión
                 </h4>
-                <p [ngClass]="{'mb-1': action === 'eliminar'}" >¿Estas seguro de que quieres {{ action | i18nSelect:actionMap }} al Profesión seleccionado?</p>
-                <p style="font-size: 12px; padding: 0 1em; margin-bottom: 2em;" *ngIf="action === 'eliminar'">Esto significa que no volverá a aparecer en el registro de la App, limitando las opciones de busqueda a los usuarios.</p>
+                <p [ngClass]="{'mb-1': action === 'eliminar'}" >¿Estás seguro de que quieres {{ action | i18nSelect:actionMap }} la profesión seleccionada?</p>
+                <p style="font-size: 12px; padding: 0 1em; margin-bottom: 2em;" *ngIf="action === 'eliminar'">Esto significa que no volverá a aparecer en el registro de la App, limitando las opciones de búsqueda a los usuarios.</p>
               </div>
             </div>
             <div class="row justify-content-center">

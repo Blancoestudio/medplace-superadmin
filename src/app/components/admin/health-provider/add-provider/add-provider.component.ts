@@ -43,6 +43,9 @@ export class AddProviderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  handleAddressChange() {
+  }
+
   uploadFile(e: any) {
     var files = e.srcElement.files;
     if (files.length > 0) {
@@ -124,4 +127,24 @@ export class AddProviderComponent implements OnInit {
     this.onCloseModal.emit();
   }
 
+  openImage(url: string){
+    window.open(url,'popup', 'top=0,left=0,width=600,height=400');
+  }
+  
+  deleteImageUrl(image: string){
+    switch (image) {
+      case 'logo':
+        this.data.logo = '';
+        break;
+      case 'image1':
+        this.data.image1 = '';
+        break;
+      case 'image2':
+        this.data.image2 = '';
+        break;
+    
+      default:
+        break;
+    }
+  }
 }

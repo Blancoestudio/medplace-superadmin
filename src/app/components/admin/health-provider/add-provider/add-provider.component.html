@@ -54,8 +54,8 @@
                             </button>
                           </div>
                           <div class="col-2 text-end">
-                            <fa-icon [icon]="faCircleXmark" class="text-danger" size="lg" *ngIf="!fileLogoUploaded"></fa-icon>
-                            <fa-icon [icon]="faCircleCheck" class="text-success" size="lg" *ngIf="fileLogoUploaded"></fa-icon>
+                            <fa-icon [icon]="faCircleCheck" class="text-success me-2" size="lg" *ngIf="data.logo" (click)="openImage(data.logo)"></fa-icon>
+                            <fa-icon [icon]="faCircleXmark" class="text-danger" size="lg" *ngIf="data.logo" (click)="deleteImageUrl('logo')"></fa-icon>
                           </div>
                         </div>
                       </li>
@@ -69,8 +69,8 @@
                             </button>
                           </div>
                           <div class="col-2 text-end">
-                            <fa-icon [icon]="faCircleXmark" class="text-danger" size="lg" *ngIf="!file1Uploaded"></fa-icon>
-                            <fa-icon [icon]="faCircleCheck" class="text-success" size="lg" *ngIf="file1Uploaded"></fa-icon>
+                            <fa-icon [icon]="faCircleCheck" class="text-success me-2" size="lg" *ngIf="data.image1" (click)="openImage(data.image1)"></fa-icon>
+                            <fa-icon [icon]="faCircleXmark" class="text-danger" size="lg" *ngIf="data.image1" (click)="deleteImageUrl('image1')"></fa-icon>
                           </div>
                         </div>
                       </li>
@@ -84,8 +84,8 @@
                             </button>
                           </div>
                           <div class="col-2 text-end">
-                            <fa-icon [icon]="faCircleXmark" class="text-danger" size="lg" *ngIf="!file2Uploaded"></fa-icon>
-                            <fa-icon [icon]="faCircleCheck" class="text-success" size="lg" *ngIf="file2Uploaded"></fa-icon>
+                            <fa-icon [icon]="faCircleCheck" class="text-success me-2" size="lg" *ngIf="data.image2" (click)="openImage(data.image2)"></fa-icon>
+                            <fa-icon [icon]="faCircleXmark" class="text-danger" size="lg" *ngIf="data.image2" (click)="deleteImageUrl('image2')"></fa-icon>
                           </div>
                         </div>
                       </li>
@@ -94,7 +94,11 @@
 
                     <div class="field-control mb-3">
                       <label class="form-label">Dirección</label>
-                      <input type="text" class="form-control" placeholder="Ingrese dirección del prestador" [(ngModel)]="data.address" name="address">
+                      <!-- <input type="text" class="form-control" placeholder="Ingrese dirección del prestador" [(ngModel)]="data.address" name="address"> -->
+                      <input class="form-control"
+                          ngx-google-places-autocomplete
+                          (onAddressChange)="handleAddressChange()"
+                      />
                     </div>
 
                     <div class="field-control mb-3">
@@ -143,11 +147,11 @@
 
               <div class="text-center">
                 <h6 class="mb-0">Muchas gracias</h6>
-                <p>Hemos generado un codigo de acceso</p>
+                <p>Hemos generado un código de acceso</p>
 
                 <app-pin-code [code]="data.accesscode"></app-pin-code>
 
-                <p class="mb-5">Ahora podras usarlo para<br/> ingresar desde nuestro sitio.</p>
+                <p class="mb-5">Ahora podrás usarlo para<br/> ingresar desde nuestro sitio.</p>
                 <button
                   type="button"
                   (click)="closeModal()"
