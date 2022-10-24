@@ -73,6 +73,7 @@ export class HealthProviderComponent implements OnInit {
         this.editProvider = false;
         break;
     }
+    
   }
 
   confirmToggle(action: string){
@@ -96,6 +97,7 @@ export class HealthProviderComponent implements OnInit {
     this.api.getCustomers().subscribe(data => {
       this.dataTable = data;
     });
+    this.selCustomers = [];
   }
 
   triggerAction(action: string) {

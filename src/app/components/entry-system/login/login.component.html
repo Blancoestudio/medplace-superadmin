@@ -12,7 +12,7 @@
 <div class="field-control mb-2">
   <label for="" class="form-label">Contraseña</label>
   <div class="suffix-wrapper">
-    <input [type]="hide ? 'password' : 'text'" class="form-control" id="" placeholder="Ingrese su contraseña" [(ngModel)]="userData.password" [disabled]="loading">
+    <input [type]="hide ? 'password' : 'text'" class="form-control" id="" placeholder="Ingrese su contraseña" [(ngModel)]="userData.password" [disabled]="loading" (keypress)="enterBtn($event)">
     <button class="icon" (click)="hide = !hide">
       <fa-icon *ngIf="hide" [icon]="faEye"></fa-icon>
       <fa-icon *ngIf="!hide" [icon]="faEyeSlash"></fa-icon>

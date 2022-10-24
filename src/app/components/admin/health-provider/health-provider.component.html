@@ -39,7 +39,8 @@
         <button
           type="button"
           class="btn btn-outline-dark btn-mid"
-          (click)="triggerAction('eliminar')">
+          (click)="triggerAction('eliminar')"
+          [disabled]="selCustomers.length == 0">
             Eliminar
         </button>
       </div>
