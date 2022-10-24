@@ -1,4 +1,5 @@
 .box {
+  overflow-y: auto;
   overflow-x: hidden;
   &.top-group {
     height: 20vh;
