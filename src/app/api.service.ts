@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 // import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,41 @@ import { Router } from '@angular/router';
 export class ApiService {
 
   constructor(private http: HttpClient, public router: Router) { }
+
+  toastError(msg?:string) {
+    Swal.fire({
+      title: 'Error',
+      text: (msg ? msg : 'Error al comunicar'),
+      icon: 'error',
+      toast: true,
+      position: 'top-right',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true
+    });
+  }
+  
+  confirmModal(title?:string, msg?:string) {
+    return Swal.fire({
+      title: (title ? title : '¿Estas seguro?'),
+      text: (msg ? msg : "Puedes cancelar o volver si no estas seguro."),
+      iconHtml: '<img src="assets/svg/icon-alert.svg">',
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#089BAB',
+      showCloseButton: true,
+      showCancelButton: true,
+      cancelButtonText: 'Volver',
+      buttonsStyling: false,
+      reverseButtons: true,
+      customClass: {
+        icon: 'border-0',
+        htmlContainer: 'text-center my-3',
+        confirmButton: 'btn btn-primary text-white w-40',
+        cancelButton: 'btn btn-outline-primary me-3 w-40',
+        actions: ' w-100'
+      },
+    })
+  }
 
   setToken(token: string) { 
     localStorage.setItem('medplaceToken', token);

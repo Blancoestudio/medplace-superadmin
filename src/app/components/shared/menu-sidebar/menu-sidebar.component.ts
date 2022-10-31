@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-menu-sidebar',
@@ -44,13 +45,22 @@ export class MenuSidebarComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
   }
 
   toggleMenu(state: boolean) {
     this.open = state;
+  }
+
+  logOut() {
+    //this.router.navigate(['/']);
+    this.api.confirmModal('¿Deseas salir de Medplace?').then((data:any) => {
+      if (data.isConfirmed) {
+        this.api.logout();
+      }
+    });
   }
 
 }
