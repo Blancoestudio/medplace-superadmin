@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     platform: 'superadmin'
   };
 
-  constructor( private router: Router, public api: ApiService ) { }
+  constructor(private router: Router, public api: ApiService) { }
 
   ngOnInit(): void { 
   }
@@ -30,25 +30,19 @@ export class LoginComponent implements OnInit {
   login() {
     this.loading = true; 
     this.api.login(this.userData).subscribe(async (data:any) => { 
-      if(data.isSuperAdmin){
-        await this.api.setProfile(data);
-        await this.api.setToken(data.token);
-        this.router.navigateByUrl('/admin/dashboard');
-        this.loading = false;
-      }
-      else{
-        this.loading = false;
-      }
+      await this.api.setProfile(data);
+      await this.api.setToken(data.token);
+      this.router.navigateByUrl('/admin/dashboard');
+      this.loading = false;
     }, (err:any) => {
       this.api.toastError(err.error.error);
       this.loading = false;
-    })
+    });
   }
 
-  enterBtn(event: KeyboardEvent){
+  enterBtn(event: KeyboardEvent) {
     if (event.key === 'Enter') {
       this.login()
     }
-    
   }
 }
