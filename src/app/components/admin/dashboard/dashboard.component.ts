@@ -7,13 +7,25 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  customers: any = [];
+
+  public loading: boolean = false;
+  public stats: any = {
+    customersList: 0,
+    shiftsCurrent: 0,
+    shiftsBefore: [],
+    periodCurrent: '',
+    usersByJobs: [],
+    usersByLocation: []
+  }
 
   constructor(public api: ApiService) { }
 
   ngOnInit(): void {
-    this.api.getCustomers().subscribe((data:any) => {
-      this.customers = data;
+
+    this.loading = true;
+    this.api.getSuperadminDashboard().subscribe((data:any) => {
+      this.stats = data;
+      this.loading = false;
     });
   }
 

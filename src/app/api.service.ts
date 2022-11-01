@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-// import Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
@@ -12,11 +12,11 @@ export class ApiService {
 
   constructor(private http: HttpClient, public router: Router) { }
 
-  setToken(token: string) { 
-    localStorage.setItem('medplaceToken', token);
+  async setToken(token: string) { 
+    await localStorage.setItem('medplaceToken', token);
   }
-  setProfile(profile:any) {
-    localStorage.setItem('medplaceProfile', JSON.stringify(profile));
+  async setProfile(profile:any) {
+    await localStorage.setItem('medplaceProfile', JSON.stringify(profile));
   }
   getProfile(data?:string) {
     let profile = JSON.parse(localStorage.getItem('medplaceProfile') || '');
@@ -24,8 +24,7 @@ export class ApiService {
       return profile[data];
     } else {
       return profile;
-    }
-    
+    } 
   }
 
   /* Masters */
@@ -34,6 +33,9 @@ export class ApiService {
   }
   getShifttypes() {
     return this.get('/v1/shifttype');
+  }
+  getSuperadminDashboard() {
+    return this.get('/v1/user/superadmin-dashboard')
   }
 
   /* Customer manager */
@@ -54,8 +56,7 @@ export class ApiService {
   }
   removeCustomer(id:string) {
     return this.delete('/v1/customer/'+id);
-  }
-  
+  } 
 
   /* Profile Management */
   getCustomerUsers() {
@@ -140,9 +141,6 @@ export class ApiService {
     this.router.navigateByUrl('/');
   }
 
-
-
-
   /* Injector */
 
   get(servicio: string): Observable<any> {
@@ -178,5 +176,78 @@ export class ApiService {
       name: name,
       file: file
     }, options);
+  }
+
+
+  error(msg?:string) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: msg ?? 'Error de conexión',
+      showConfirmButton: false,
+      cancelButtonColor: '#142748',
+      showCancelButton: true,
+      cancelButtonText: 'Aceptar'
+    });
+  }
+  toastError(msg?:string) {
+    Swal.fire({
+      title: 'Error',
+      text: (msg ? msg : 'Error al comunicar'),
+      icon: 'error',
+      toast: true,
+      position: 'top-right',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true
+    });
+  }
+  toastOk(msg?:string) {
+    Swal.fire({
+      title: 'Listo',
+      text: (msg ? msg : 'Realizado correctamente'),
+      icon: 'success',
+      toast: true,
+      position: 'top-right',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true
+    });
+  }
+  confirmModal(title?:string, msg?:string) {
+    return Swal.fire({
+      title: (title ? title : '¿Estas seguro?'),
+      text: (msg ? msg : "Puedes cancelar o volver si no estas seguro."),
+      iconHtml: '<img src="assets/svg/icon-alert.svg">',
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#089BAB',
+      showCloseButton: true,
+      showCancelButton: true,
+      cancelButtonText: 'Volver',
+      buttonsStyling: false,
+      reverseButtons: true,
+      customClass: {
+        icon: 'border-0',
+        htmlContainer: 'text-center my-3',
+        confirmButton: 'btn btn-primary text-white w-40',
+        cancelButton: 'btn btn-outline-primary me-3 w-40',
+        actions: ' w-100'
+      },
+    })
+  }
+  ok(title?:string, text?:string) {
+    return Swal.fire({
+      title: (title ? title : 'Listo'),
+      text: (text ? text : 'Realizado correctamente'),
+      icon: 'success',
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#089BAB',
+      showCloseButton: false,
+      buttonsStyling: false,
+      customClass: {
+        htmlContainer: 'text-center my-3',
+        confirmButton: 'btn btn-primary text-white w-100',
+      },
+    })
   }
 }

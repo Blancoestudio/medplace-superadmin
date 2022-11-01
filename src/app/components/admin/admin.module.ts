@@ -15,6 +15,7 @@ import { SettingComponent } from './setting/setting.component';
 import { AddProfessionComponent } from './setting/add-profession/add-profession.component';
 import { ActionProfessionComponent } from './setting/action-profession/action-profession.component';
 import { FormsModule } from '@angular/forms';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     SharedModule,
     AdminRoutingModule,
-    FormsModule
+    FormsModule,
+    GooglePlaceModule
   ]
 })
 export class AdminModule { }

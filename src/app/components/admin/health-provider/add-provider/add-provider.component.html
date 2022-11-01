@@ -26,12 +26,12 @@
                   <div class="col">
 
                     <div class="field-control mb-3 mt-4">
-                      <label class="form-label" for="name-customer">Prestador de Salud</label>
+                      <label class="form-label" for="name-customer">Prestador de Salud (*)</label>
                       <input class="form-control" type="text" name="name" id="name-customer" placeholder="Nombre prestador de salud" [(ngModel)]="data.name">
                     </div>
                     <div class="field-control mb-3">
-                      <label class="form-label">Rut Prestador</label>
-                      <input type="text" class="form-control" placeholder="11.111.111-k" [(ngModel)]="data.rut" name="rut">
+                      <label class="form-label">Rut Prestador (*)</label>
+                      <input type="text" class="form-control" placeholder="11.111.111-k" [(ngModel)]="data.rut" name="rut" (input)="inputEvent($event)">
                     </div>
                     <div class="field-control mb-3">
                       <label class="form-label">Reseña</label>
@@ -46,7 +46,7 @@
 
                       <li>
                         <div class="row align-items-center">
-                          <label for="inputPassword" class="col-sm-4 col-form-label form-label mb-0">Logo: </label>
+                          <label for="inputPassword" class="col-sm-4 col-form-label form-label mb-0">Logo (*): </label>
                           <div class="col-sm-6 text-center">
                             <button type="button" class="btn btn-outline-secondary btn-sm px-4 btn-upload">
                               <input type="file" name="logoFile" (change)="uploadFile( $event )">
@@ -54,14 +54,14 @@
                             </button>
                           </div>
                           <div class="col-2 text-end">
-                            <fa-icon [icon]="faCircleCheck" class="text-success me-2" size="lg" *ngIf="data.logo" (click)="openImage(data.logo)"></fa-icon>
-                            <fa-icon [icon]="faCircleXmark" class="text-danger" size="lg" *ngIf="data.logo" (click)="deleteImageUrl('logo')"></fa-icon>
+                            <fa-icon [icon]="faCircleCheck" class="text-success me-2" size="lg" *ngIf="data.logo != ''" (click)="openImage(data.logo)"></fa-icon>
+                            <fa-icon [icon]="faCircleXmark" class="text-danger" size="lg" *ngIf="data.logo != ''" (click)="deleteImageUrl('logo')"></fa-icon>
                           </div>
                         </div>
                       </li>
                       <li>
                         <div class="row align-items-center">
-                          <label for="inputPassword" class="col-sm-4 col-form-label form-label mb-0">Imagen 1: </label>
+                          <label for="inputPassword" class="col-sm-4 col-form-label form-label mb-0">Imagen 1 (*): </label>
                           <div class="col-sm-6 text-center">
                             <button type="button" class="btn btn-outline-secondary btn-sm px-4 btn-upload">
                               <input type="file" name="providerImg1" (change)="uploadFile( $event )">
@@ -69,8 +69,8 @@
                             </button>
                           </div>
                           <div class="col-2 text-end">
-                            <fa-icon [icon]="faCircleCheck" class="text-success me-2" size="lg" *ngIf="data.image1" (click)="openImage(data.image1)"></fa-icon>
-                            <fa-icon [icon]="faCircleXmark" class="text-danger" size="lg" *ngIf="data.image1" (click)="deleteImageUrl('image1')"></fa-icon>
+                            <fa-icon [icon]="faCircleCheck" class="text-success me-2" size="lg" *ngIf="data.image1 != ''" (click)="openImage(data.image1)"></fa-icon>
+                            <fa-icon [icon]="faCircleXmark" class="text-danger" size="lg" *ngIf="data.image1 != ''" (click)="deleteImageUrl('image1')"></fa-icon>
                           </div>
                         </div>
                       </li>
@@ -84,8 +84,8 @@
                             </button>
                           </div>
                           <div class="col-2 text-end">
-                            <fa-icon [icon]="faCircleCheck" class="text-success me-2" size="lg" *ngIf="data.image2" (click)="openImage(data.image2)"></fa-icon>
-                            <fa-icon [icon]="faCircleXmark" class="text-danger" size="lg" *ngIf="data.image2" (click)="deleteImageUrl('image2')"></fa-icon>
+                            <fa-icon [icon]="faCircleCheck" class="text-success me-2" size="lg" *ngIf="data.image2 != ''" (click)="openImage(data.image2)"></fa-icon>
+                            <fa-icon [icon]="faCircleXmark" class="text-danger" size="lg" *ngIf="data.image2 != ''" (click)="deleteImageUrl('image2')"></fa-icon>
                           </div>
                         </div>
                       </li>
@@ -93,12 +93,8 @@
                     </ul>
 
                     <div class="field-control mb-3">
-                      <label class="form-label">Dirección</label>
-                      <!-- <input type="text" class="form-control" placeholder="Ingrese dirección del prestador" [(ngModel)]="data.address" name="address"> -->
-                      <input class="form-control"
-                          ngx-google-places-autocomplete
-                          (onAddressChange)="handleAddressChange()"
-                      />
+                      <label class="form-label">Dirección Principal</label>
+                      <input type="text" class="form-control" [(ngModel)]="data.address" name="address" [options]="mapOptions" ngx-google-places-autocomplete (onAddressChange)="handleAddressChange($event)" />
                     </div>
 
                     <div class="field-control mb-3">
@@ -116,11 +112,7 @@
 
                 <div class="row" *ngIf="!onEditProvider">
                   <div class="col text-center">
-                    <button
-                      (click)="addProvider()"
-                      type="button" class="btn btn-primary px-5">
-                        Añadir Prestador
-                    </button>
+                    <button (click)="addProvider()" type="button" class="btn btn-primary px-5">Añadir Prestador</button>
                   </div>
                 </div>
                 <div class="row" *ngIf="onEditProvider">

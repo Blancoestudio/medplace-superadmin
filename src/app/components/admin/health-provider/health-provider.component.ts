@@ -21,21 +21,16 @@ export class HealthProviderComponent implements OnInit {
 
   dataTable: any[] = [];
   
-  selCustomer: any = {
-    id: '',
-    name: '',
-    rut: '',
-    review: '',
-    address: '',
-    email: '',
-    website: ''
-  };
+  selCustomer: any = {};
   
   selCustomers: string[] = [];
+
+  loading: boolean = false;
 
   constructor(public api: ApiService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.api.getCustomers().subscribe((customers: any[]) => {
       this.api.getUsers().subscribe((users: any[]) => {
         this.dataTable = customers.map((customer: any) => {
@@ -47,6 +42,7 @@ export class HealthProviderComponent implements OnInit {
             }).filter(item => item)
           }
         });
+        this.loading = false;
       });
     });
   }
@@ -56,7 +52,18 @@ export class HealthProviderComponent implements OnInit {
       case 'add':
         this.modalProvider = true;
         this.editProvider = false;
-        this.selCustomer = {};
+        this.selCustomer = {
+          id: '',
+          name: '',
+          rut: '',
+          review: '',
+          address: '',
+          email: '',
+          website: '',
+          image1: '',
+          image2: '',
+          logo: ''
+        };
         break;
       case 'edit':
         this.modalProvider = true;
@@ -73,6 +80,7 @@ export class HealthProviderComponent implements OnInit {
         this.editProvider = false;
         break;
     }
+    console.log(this.selCustomer);
     
   }
 

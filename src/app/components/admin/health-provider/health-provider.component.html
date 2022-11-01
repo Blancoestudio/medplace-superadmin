@@ -1,3 +1,7 @@
+<app-modal-cmp [toggle]="loading">
+  <div class="d-flex justify-content-center align-items-center" style="height: 350px;"><app-loader></app-loader></div>
+</app-modal-cmp>
+
 <div class="modal fade" [ngClass]="{'show d-block': modalProvider}" tabindex="-1">
   <div class="modal-dialog modal-xl modal-dialog-centered animate__animated animate__fadeInDown animate__faster">
     <div class="modal-content rounded-4 overflow-hidden">
@@ -24,23 +28,7 @@
         <h5>Prestadores de salud</h5>
       </div>
       <div class="col d-flex justify-content-end">
-        <!-- <button
-          type="button"
-          class="btn btn-outline-dark btn-mid me-4"
-          (click)="triggerAction('activar')">
-            Activar
-        </button>
-        <button
-          type="button"
-          class="btn btn-outline-dark btn-mid me-4"
-          (click)="triggerAction('pausar')">
-            Pausar
-        </button> -->
-        <button
-          type="button"
-          class="btn btn-outline-dark btn-mid"
-          (click)="triggerAction('eliminar')"
-          [disabled]="selCustomers.length == 0">
+        <button type="button" class="btn btn-outline-dark btn-mid" (click)="triggerAction('eliminar')" [disabled]="selCustomers.length == 0">
             Eliminar
         </button>
       </div>
@@ -62,6 +50,7 @@
           </div>
 
           <div class="table-cmp__body">
+            <div class="table-cmp__row text-center" *ngIf="dataTable.length == 0">Sin prestadores de salud en sistema</div>
             <div class="table-cmp__row" *ngFor="let item of dataTable">
               <div class="table-cmp__col">
                 <app-checkbox-cmp (toggle)="toggleListItem($event, item._id)"></app-checkbox-cmp>

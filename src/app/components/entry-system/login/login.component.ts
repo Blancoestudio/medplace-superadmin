@@ -19,42 +19,28 @@ export class LoginComponent implements OnInit {
   public userData: any = {
     email: '',
     password: '',
-    platform: 'web'
+    platform: 'superadmin'
   };
 
   constructor( private router: Router, public api: ApiService ) { }
 
-  ngOnInit(): void {
-    if (location.href.indexOf('localhost') > -1) {
-      this.userData.email = 'rosses@blanco-brand.com';
-      this.userData.password = '123456';
-    }
+  ngOnInit(): void { 
   }
 
   login() {
-    this.loading = true;
-    // this.alertMessage = '';
-    // this.alertShow = false;
-    this.api.login(this.userData).subscribe((data:any) => {
-      // this.alertShow = true;
-      // this.alertResult = 'alert-success';
-      // this.alertMessage = 'Acceso correcto, espere por favor';
+    this.loading = true; 
+    this.api.login(this.userData).subscribe(async (data:any) => { 
       if(data.isSuperAdmin){
-        setTimeout(() => {
-          this.api.setProfile(data);
-          this.api.setToken(data.token);
-          this.router.navigateByUrl('/admin/dashboard');
-          this.loading = false;
-        },1000);
+        await this.api.setProfile(data);
+        await this.api.setToken(data.token);
+        this.router.navigateByUrl('/admin/dashboard');
+        this.loading = false;
       }
       else{
         this.loading = false;
       }
     }, (err:any) => {
-      //this.api.toastError(err.error.error)
-      // this.alertResult = 'alert-danger';
-      // this.alertShow = true;
-      // this.alertMessage = err.error.error ?? 'Error de conexión';
+      this.api.toastError(err.error.error);
       this.loading = false;
     })
   }

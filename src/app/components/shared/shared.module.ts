@@ -11,6 +11,7 @@ import { ModalCmpComponent } from './modal-cmp/modal-cmp.component';
 import { PinCodeComponent } from './pin-code/pin-code.component';
 import { ConfirmActionModalComponent } from './confirm-action-modal/confirm-action-modal.component';
 import { RadioBtnComponent } from './radio-btn/radio-btn.component';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RadioBtnComponent } from './radio-btn/radio-btn.component';
   imports: [
     CommonModule,
     FontAwesomeModule,
-    RouterModule
+    RouterModule,
+    GooglePlaceModule
   ],
   exports: [
     FontAwesomeModule,
@@ -39,7 +41,7 @@ import { RadioBtnComponent } from './radio-btn/radio-btn.component';
     ModalCmpComponent,
     PinCodeComponent,
     ConfirmActionModalComponent,
-    RadioBtnComponent,
+    RadioBtnComponent
   ]
 })
 export class SharedModule { }

@@ -42,6 +42,11 @@ export class MenuSidebarComponent implements OnInit {
       name: "Configuración",
       url: "setting"
     },
+    {
+      icon: "icon-circle-x",
+      name: "Cerrar Sesión",
+      url: "logout"
+    },
   ];
 
   constructor() { }
