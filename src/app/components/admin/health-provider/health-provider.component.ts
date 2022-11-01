@@ -39,7 +39,7 @@ export class HealthProviderComponent implements OnInit {
             admin: users.map((user: {admins: any[]}) => {
               const item = user.admins.find(item => item.customer === customer._id);
               return item ? user : undefined;
-            }).filter(item => item)
+            }).filter(item => item) ?? 0
           }
         });
         this.loading = false;
@@ -99,8 +99,6 @@ export class HealthProviderComponent implements OnInit {
   }
 
   dismissAction() {
-    // this.confirmDelete = false
-    // this.confirmPause = false
     this.modalAction = false;
     this.api.getCustomers().subscribe(data => {
       this.dataTable = data;

@@ -13,8 +13,7 @@
         <button
           class="btn btn-link"
           [routerLink]="[ item.url ]"
-          routerLinkActive="active"
-          [disabled]="indice == 4">
+          routerLinkActive="active">
             <span class="icon"><img src="{{'assets/svg/' + item.icon + '.svg'}}" alt="icono"></span>
             <span *ngIf="open">{{ item.name }}</span>
         </button>
