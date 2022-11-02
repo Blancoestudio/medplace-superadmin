@@ -52,7 +52,7 @@ export class AddProviderComponent implements OnInit {
   }
 
   handleAddressChange(address: Address) {
-    let numero = "", calle = "", comuna = "", pais = "";
+    let numero = "", calle = "", comuna = "", pais = "", region = "";
     for (let i = 0; i < address.address_components.length; i++) {
       for (let j = 0; j < address.address_components[i].types.length; j++) {
         if (address.address_components[i].types[j] == "street_number") {
@@ -64,6 +64,9 @@ export class AddProviderComponent implements OnInit {
         if (address.address_components[i].types[j] == "locality" || address.address_components[i].types[j] == "administrative_area_level_3") {
           comuna = address.address_components[i].short_name;
         }
+        if (address.address_components[i].types[j] == "administrative_area_level_1") {
+          region = address.address_components[i].short_name;
+        }
         if (address.address_components[i].types[j] == "country") {
           pais = address.address_components[i].short_name;
         }
@@ -74,6 +77,7 @@ export class AddProviderComponent implements OnInit {
     this.data.lng = ""+address.geometry.location.lng()+"";
     this.data.country = pais;
     this.data.county = comuna;
+    this.data.state = region;
     //this.data.address = address.formatted_address;
   }
 

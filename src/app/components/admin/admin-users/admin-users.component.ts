@@ -18,12 +18,15 @@ export class AdminUsersComponent implements OnInit {
   faAngleDown = faAngleDown;
 
   adminList: any[] = [];
+  loading: boolean = false;
 
   constructor(public api: ApiService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.api.getCustomers().subscribe((customers: any[]) => {
       this.api.getUsers().subscribe((users: any[]) => {
+        this.loading = false;
         this.adminList = customers.map((customer: any) => {
           customer.open = false;
           return {

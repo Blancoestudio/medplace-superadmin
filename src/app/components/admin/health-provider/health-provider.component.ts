@@ -62,7 +62,10 @@ export class HealthProviderComponent implements OnInit {
           website: '',
           image1: '',
           image2: '',
-          logo: ''
+          logo: '',
+          state: '',
+          country: '',
+          county: ''
         };
         break;
       case 'edit':
