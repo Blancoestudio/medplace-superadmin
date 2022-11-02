@@ -69,11 +69,12 @@ export class AddProviderComponent implements OnInit {
         }
       }
     }
+    this.data.address = calle + " " + numero;
     this.data.lat = ""+address.geometry.location.lat()+"";
     this.data.lng = ""+address.geometry.location.lng()+"";
     this.data.country = pais;
     this.data.county = comuna;
-    this.data.address = address.formatted_address;
+    //this.data.address = address.formatted_address;
   }
 
   uploadFile(e: any) {
