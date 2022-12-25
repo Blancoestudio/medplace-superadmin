@@ -25,7 +25,9 @@ export class AdminUsersComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this.api.getCustomers().subscribe((customers: any[]) => {
-      this.api.getUsers().subscribe((users: any[]) => {
+      this.api.getUsers({
+        isSuperAdmin: true
+      }).subscribe((users: any[]) => {
         this.loading = false;
         this.adminList = customers.map((customer: any) => {
           customer.open = false;

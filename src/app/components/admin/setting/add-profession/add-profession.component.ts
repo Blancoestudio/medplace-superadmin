@@ -14,7 +14,8 @@ export class AddProfessionComponent implements OnInit {
   @Input() show: boolean = false;
   @Input() job = {
     name: '',
-    skippable: false
+    skippable: false,
+    requireVacunas: true
   };
   @Output() onClose: EventEmitter<boolean> = new EventEmitter();
   
@@ -35,7 +36,7 @@ export class AddProfessionComponent implements OnInit {
         console.log(data);
         this.addProfessionModal = !this.addProfessionModal;
         this.onClose.emit(false);
-        this.job = {name: '', skippable: false};
+        this.job = {name: '', skippable: false, requireVacunas: true};
       });
     }
     else{
@@ -43,7 +44,7 @@ export class AddProfessionComponent implements OnInit {
         console.log(data)
         this.addProfessionModal = !this.addProfessionModal
         this.onClose.emit(false);
-        this.job = {name: '', skippable: false};
+        this.job = {name: '', skippable: false, requireVacunas: true};
         this.editable = false;
       });
     }
@@ -58,7 +59,7 @@ export class AddProfessionComponent implements OnInit {
 
   close() {
     this.editable = false;
-    this.job = {name: '', skippable: false};
+    this.job = {name: '', skippable: false, requireVacunas: true};
     this.onClose.emit(false);
   }
 

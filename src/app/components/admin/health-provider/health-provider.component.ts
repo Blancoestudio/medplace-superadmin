@@ -32,7 +32,9 @@ export class HealthProviderComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this.api.getCustomers().subscribe((customers: any[]) => {
-      this.api.getUsers().subscribe((users: any[]) => {
+      this.api.getUsers({
+        isAdmin: true
+      }).subscribe((users: any[]) => {
         this.dataTable = customers.map((customer: any) => {
           return {
             ...customer,

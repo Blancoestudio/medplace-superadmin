@@ -14,16 +14,19 @@ export class SettingComponent implements OnInit {
   actionProfessionModal: boolean = false;
 
   action: string = '';
+  loading: boolean = true;
   
   jobs = [{
     name: '',
     skippable: false,
+    requireVacunas: true,
     _id: ''
   }];
   
   selJob = {
     name: '',
     skippable: false,
+    requireVacunas: true,
     id: ''
   };
   
@@ -35,8 +38,10 @@ export class SettingComponent implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.api.getJobs().subscribe(data => {
       this.jobs = data;
+      this.loading = false;
     })
   }
 
@@ -46,10 +51,12 @@ export class SettingComponent implements OnInit {
   }
   
   editProfession(id: string){
-    this.edit = true;
-    this.addProfessionModal = true;
+    this.loading = true;
     this.api.getJob(id).subscribe(data => {
-      this.selJob = data
+      this.edit = true;
+      this.selJob = data;
+      this.addProfessionModal = true;
+      this.loading = false;
     })
   }
 
@@ -75,8 +82,10 @@ export class SettingComponent implements OnInit {
   
   onDismissActionModal(){
     this.actionProfessionModal = false;
+    this.loading = true;
     this.api.getJobs().subscribe(data => {
       this.jobs = data;
+      this.loading = false;
     });
   }
 }

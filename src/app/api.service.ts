@@ -104,8 +104,10 @@ export class ApiService {
   }
   
   /* User management */
-  getUsers(){
-    return this.get('/v1/user');
+  getUsers(data:any){
+    let d = '';
+    if (data) { d = new URLSearchParams(data).toString(); }
+    return this.get("/v1/user?" + d); 
   }
   
   /* Jobs management */
@@ -140,9 +142,14 @@ export class ApiService {
     localStorage.removeItem('medplaceToken');
     this.router.navigateByUrl('/');
   }
+  setActivation(id:string, status: boolean) {
+    return this.post('/v1/user/active', {
+      id: id,
+      status: status
+    });
+  }
 
   /* Injector */
-
   get(servicio: string): Observable<any> {
     const headers = new HttpHeaders({ 'Authorization': 'Bearer '+localStorage.getItem('medplaceToken') || '' });
     const o = { headers: headers }; 

@@ -7,6 +7,7 @@ import { HealthProviderComponent } from './health-provider/health-provider.compo
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { BillingComponent } from './billing/billing.component';
 import { SettingComponent } from './setting/setting.component';
+import { SuperintendenciaComponent } from './superintendencia/superintendencia.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: 'setting',
         component: SettingComponent
+      },
+      {
+        path: 'superintendencia',
+        component: SuperintendenciaComponent
       }
     ]
   }
