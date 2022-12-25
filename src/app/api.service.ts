@@ -126,6 +126,22 @@ export class ApiService {
   deleteJob(id: string){
     return this.delete('/v1/job/' + id);
   }
+  getUnits(){
+    return this.get('/v1/unit');
+  } 
+  addUnit(job: any){
+    return this.post('/v1/unit', job);
+  }
+  editUnit(job: any){
+    return this.post('/v1/unit/' + job._id, job);
+  }
+  getUnit(id: string){
+    return this.get('/v1/unit/' + id);
+  }
+  deleteUnit(id: string){
+    return this.delete('/v1/unit/' + id);
+  }
+  
 
   /* Auth services */
   login(data:any) {

@@ -2,9 +2,12 @@
   &--setting {
     .table-cmp__row {
       padding: 0 5em;
-      // .table-cmp__col {
-      //   border: 1px solid red;
-      // }
+      .table-cmp__col {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+        white-space: nowrap;
+     }
     }
   }
 }

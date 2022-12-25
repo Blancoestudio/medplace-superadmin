@@ -11,7 +11,9 @@ export class SettingComponent implements OnInit {
 
   edit: boolean = false;
   addProfessionModal: boolean = false;
+  addEnterpriseModal: boolean = false;
   actionProfessionModal: boolean = false;
+  actionEnterpriseModal: boolean = false;
 
   action: string = '';
   loading: boolean = true;
@@ -32,6 +34,9 @@ export class SettingComponent implements OnInit {
   
   selJobs: string[] = [];
   selId: string = '';
+
+  selUnits: string[] = [];
+  unids: any = [];
   
   form = {};
 
@@ -41,13 +46,20 @@ export class SettingComponent implements OnInit {
     this.loading = true;
     this.api.getJobs().subscribe(data => {
       this.jobs = data;
-      this.loading = false;
-    })
+      this.api.getUnits().subscribe((data:any) => {
+        this.unids = data;
+        this.loading = false;
+      });
+    });
   }
 
   addProfession() {
     this.edit = false;
     this.addProfessionModal = true;
+  }
+  addUnidad() {
+    this.edit = false;
+    this.addEnterpriseModal = true;
   }
   
   editProfession(id: string){
@@ -61,6 +73,22 @@ export class SettingComponent implements OnInit {
   }
 
   deleteProfession( id: string ) {
+    this.actionProfessionModal = true;
+    this.action = 'eliminar';
+    this.selId = id;
+  }
+
+  editUnit(id: string){
+    this.loading = true;
+    this.api.getJob(id).subscribe(data => {
+      this.edit = true;
+      this.selJob = data;
+      this.addProfessionModal = true;
+      this.loading = false;
+    })
+  }
+
+  deleteUnit( id: string ) {
     this.actionProfessionModal = true;
     this.action = 'eliminar';
     this.selId = id;
