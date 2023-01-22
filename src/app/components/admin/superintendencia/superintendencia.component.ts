@@ -27,7 +27,16 @@ export class SuperintendenciaComponent implements OnInit {
   }
 
   getPro(id:string) {
-    return this.jobs.filter((x:any) => { return x._id == id; })[0].name;
+    if (id) {
+      try {
+        return this.jobs.filter((x:any) => { return x._id == id; })[0].name;
+      } catch (err) {
+        console.error(err);
+        return '';
+      }
+    } else { 
+      return ''; 
+    }
   }
 
   changeActivation(i:number) {

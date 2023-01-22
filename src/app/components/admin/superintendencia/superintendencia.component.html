@@ -14,23 +14,17 @@
     </div>
 
     <div class="row justify-content-center px-5">
-      <div class="col-11">
+      <div class="col-12">
 
         <div class="table-cmp table-cmp--setting">
           <div class="table-cmp__header">
             <div class="table-cmp__row">
-              <div class="table-cmp__col"> 
-                Nombre 
-              </div> 
-              <div class="table-cmp__col"> 
-                Profesión
-              </div>
-              <div class="table-cmp__col">
-                Reg. Superint.
-              </div> 
-              <div class="table-cmp__col">
-                Adjuntos
-              </div> 
+              <div class="table-cmp__col">RUT</div> 
+              <div class="table-cmp__col">Nombre</div> 
+              <div class="table-cmp__col">Fecha Registro</div>
+              <div class="table-cmp__col">Profesión</div>
+              <div class="table-cmp__col">Reg. Superint.</div> 
+              <div class="table-cmp__col">Adjuntos</div> 
               <div class="table-cmp__col">Reg. Validado</div>
             </div>
           </div>
@@ -39,16 +33,22 @@
             <div class="table-cmp__toggable-row" *ngFor="let p of peoples; let i = index;">
               <div class="table-cmp__row">
                 <div class="table-cmp__col">
-                  {{p.name}} {{p.lastname}}
+                  {{p?.rut}}
+                </div> 
+                <div class="table-cmp__col" title="{{p?.name}} {{p?.lastname}}">
+                  {{p?.name}} {{p?.lastname}}
                 </div> 
                 <div class="table-cmp__col">
-                  {{getPro(p.profession)}}
+                  {{p.createdAt | date: 'dd/MM/yy'}}
                 </div>
                 <div class="table-cmp__col">
-                  {{p.registroSuperintendencia}}&nbsp;
+                  {{getPro(p?.profession)}}
                 </div>
                 <div class="table-cmp__col">
-                  {{p.registroSuperintendencia}}&nbsp;
+                  {{p?.registroSuperintendencia}}&nbsp;
+                </div>
+                <div class="table-cmp__col">
+                  <a [href]="z.url" class="mx-1" target="_blank" *ngFor="let z of p.registroUrl; let i = index;">{{(i+1)}}</a>
                 </div>
                 <div class="table-cmp__col">
                   <div class="toggle">
