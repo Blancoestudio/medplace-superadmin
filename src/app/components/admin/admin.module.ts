@@ -17,6 +17,7 @@ import { ActionProfessionComponent } from './setting/action-profession/action-pr
 import { FormsModule } from '@angular/forms';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { SuperintendenciaComponent } from './superintendencia/superintendencia.component';
+import { AddUnidadComponent } from './setting/add-unidad/add-unidad.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { SuperintendenciaComponent } from './superintendencia/superintendencia.c
     BillingComponent,
     SettingComponent,
     AddProfessionComponent,
+    AddUnidadComponent,
     ActionProfessionComponent,
     SuperintendenciaComponent
   ],

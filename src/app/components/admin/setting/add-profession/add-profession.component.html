@@ -11,15 +11,15 @@
       <div class="modal-body py-4">
 
         <div class="row justify-content-center">
-          <div class="col-9">
+          <div class="col-8">
             <form #formProfession="ngForm" (ngSubmit)="addProfession()">
               <div class="field-control">
                 <label class="form-label">Nombre Profesión</label>
                 <div class="input-group mb-3">
                   <input [disabled]="edit && !editable" type="text" class="form-control border-end-0" placeholder="Ingrese nombre" name="name" [(ngModel)]="job.name">
-                  <span *ngIf="edit && !editable" (click)="editable = true"   class="input-group-text border-start-0">
+                  <!-- <span *ngIf="edit && !editable" (click)="editable = true"   class="input-group-text border-start-0">
                       <img src="assets/svg/icon-edit.svg" alt="icono editar">
-                  </span>
+                  </span> -->
                 </div>
               </div>
               <div class="field-control mb-3" *ngIf="!edit || editable">
@@ -42,10 +42,18 @@
 
               <div class="d-flex justify-content-center gap-3 px-5">
                 <button type="button" (click)="close()" class="btn btn-outline-primary w-50">Volver</button>
-                <button *ngIf="!edit" type="submit" class="btn btn-primary w-50">Agregar</button>
-                <button *ngIf="edit && editable" type="submit" class="btn btn-primary w-50">Editar</button>
+                <button *ngIf="!edit" type="submit" [disabled]="job.name==''" class="btn btn-primary w-50">Agregar</button>
+                <button *ngIf="edit && editable" [disabled]="job.name==''" type="submit" class="btn btn-primary w-50">Editar</button>
               </div>
             </form>
+          </div>
+          <div class="col-4">
+            <div>
+              <label class="form-label"><b>Unidades</b></label>
+              <div class="box_units mb-4">
+                <div class="d-block mb-2" *ngFor="let u of units; let i = index;"><input type="checkbox" [checked]="meIschecked(u)" [value]="u.id" (click)="changeUnitOfProfession(u)" /> {{u.name}}</div>
+              </div>
+            </div>
           </div>
         </div>
 

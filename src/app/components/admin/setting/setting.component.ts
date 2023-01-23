@@ -10,10 +10,13 @@ import { ApiService } from 'src/app/api.service';
 export class SettingComponent implements OnInit {
 
   edit: boolean = false;
+  editUnidad: boolean = false;
   addProfessionModal: boolean = false;
+  addUnidadModal: boolean = false;
   addEnterpriseModal: boolean = false;
   actionProfessionModal: boolean = false;
   actionEnterpriseModal: boolean = false;
+  actionUnidadModal: boolean = false;
 
   action: string = '';
   loading: boolean = true;
@@ -22,14 +25,16 @@ export class SettingComponent implements OnInit {
     name: '',
     skippable: false,
     requireVacunas: true,
-    _id: ''
+    _id: '',
+    units: []
   }];
   
   selJob = {
     name: '',
     skippable: false,
     requireVacunas: true,
-    id: ''
+    id: '',
+    units: []
   };
   
   selJobs: string[] = [];
@@ -37,6 +42,7 @@ export class SettingComponent implements OnInit {
 
   selUnits: string[] = [];
   unids: any = [];
+  selUnidad: any = {};
   
   form = {};
 
@@ -47,7 +53,9 @@ export class SettingComponent implements OnInit {
     this.api.getJobs().subscribe(data => {
       this.jobs = data;
       this.api.getUnits().subscribe((data:any) => {
-        this.unids = data;
+        let ut = data;
+        ut.sort((a:any, b:any) => (a.name < b.name ? -1 : 1));
+        this.unids = ut;
         this.loading = false;
       });
     });
@@ -58,8 +66,8 @@ export class SettingComponent implements OnInit {
     this.addProfessionModal = true;
   }
   addUnidad() {
-    this.edit = false;
-    this.addEnterpriseModal = true;
+    this.editUnidad = false;
+    this.addUnidadModal = true;
   }
   
   editProfession(id: string){
@@ -80,18 +88,24 @@ export class SettingComponent implements OnInit {
 
   editUnit(id: string){
     this.loading = true;
-    this.api.getJob(id).subscribe(data => {
-      this.edit = true;
-      this.selJob = data;
-      this.addProfessionModal = true;
+    this.api.getUnit(id).subscribe(data => {
+      this.editUnidad = true;
+      this.selUnidad = data;
+      this.addUnidadModal = true;
       this.loading = false;
     })
   }
 
   deleteUnit( id: string ) {
-    this.actionProfessionModal = true;
-    this.action = 'eliminar';
-    this.selId = id;
+    this.api.confirmModal('Eliminar','¿Eliminar unidad y quitar relaciones existentes?').then((ok) => {
+      if (ok.isConfirmed) {
+        this.loading = true;
+        this.api.deleteUnit(id).subscribe((data:any) => {
+          this.loading = true;
+          this.getUnidades(false);
+        });
+      }
+    })
   }
   
   pausarProfesion(  ){
@@ -107,7 +121,15 @@ export class SettingComponent implements OnInit {
       this.jobs = data;
     });
   }
-  
+  getUnidades($event: any){
+    this.addUnidadModal = $event;
+    this.api.getUnits().subscribe((data:any) => {
+      let ut = data;
+      ut.sort((a:any, b:any) => (a.name < b.name ? -1 : 1));
+      this.unids = ut;
+      this.loading = false;
+    });
+  }
   onDismissActionModal(){
     this.actionProfessionModal = false;
     this.loading = true;
