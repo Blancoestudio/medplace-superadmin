@@ -97,6 +97,22 @@
                       <input type="text" class="form-control" [(ngModel)]="data.address" name="address" [options]="mapOptions" ngx-google-places-autocomplete (onAddressChange)="handleAddressChange($event)" />
                     </div>
 
+
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="field-control mb-3">
+                          <label class="form-label">Comuna</label>
+                          <input type="text" class="form-control" readonly [(ngModel)]="data.county" name="county" />
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="field-control mb-3">
+                          <label class="form-label">Región</label>
+                          <input type="text" class="form-control" readonly [(ngModel)]="data.state" name="state" />
+                        </div>                        
+                      </div>
+                    </div>
+
                     <div class="field-control mb-3">
                       <label class="form-label">Email Administrador</label>
                       <input type="text" class="form-control" placeholder="Ingrese email del administrador" [(ngModel)]="data.email" name="email">
