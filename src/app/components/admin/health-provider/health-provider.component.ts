@@ -30,23 +30,7 @@ export class HealthProviderComponent implements OnInit {
   constructor(public api: ApiService) { }
 
   ngOnInit(): void {
-    this.loading = true;
-    this.api.getCustomers().subscribe((customers: any[]) => {
-      this.api.getUsers({
-        isAdmin: true
-      }).subscribe((users: any[]) => {
-        this.dataTable = customers.map((customer: any) => {
-          return {
-            ...customer,
-            admin: users.map((user: {admins: any[]}) => {
-              const item = user.admins.find(item => item.customer === customer._id);
-              return item ? user : undefined;
-            }).filter(item => item) ?? 0
-          }
-        });
-        this.loading = false;
-      });
-    });
+    this.filltable();
   }
 
   toggleModalProvider(action: string, id?: string) {
@@ -93,22 +77,33 @@ export class HealthProviderComponent implements OnInit {
     this.confirmDelete = true;
   }
 
-  addProvider(){
-    this.api.getCustomers().subscribe(data => {
-      this.dataTable = data;
-    });
-  }
-
   confirmResponse(resp: boolean) {
     console.log(resp);
   }
 
   dismissAction() {
     this.modalAction = false;
-    this.api.getCustomers().subscribe(data => {
-      this.dataTable = data;
-    });
     this.selCustomers = [];
+  }
+
+  filltable() {
+    this.loading = true;
+    this.api.getCustomers().subscribe((customers: any[]) => {
+      this.api.getUsers({
+        isAdmin: true
+      }).subscribe((users: any[]) => {
+        this.dataTable = customers.map((customer: any) => {
+          return {
+            ...customer,
+            admin: users.map((user: {admins: any[]}) => {
+              const item = user.admins.find(item => item.customer === customer._id);
+              return item ? user : undefined;
+            }).filter(item => item) ?? 0
+          }
+        });
+        this.loading = false;
+      });
+    });
   }
 
   triggerAction(action: string) {
